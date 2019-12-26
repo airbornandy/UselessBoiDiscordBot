@@ -164,7 +164,9 @@ client.on('message', msg => {
                     .addField('stop', 'Stops all audio and deletes queue')
                     .addField('cookie {user}', 'Gives the specified user a cookie')
                     .addField('howcute', 'Rates how cute you are on a scale of 100-100')
+                    .addField('raw', 'Some good advice')
                     .addField('toeless', 'Sends a photo of toeless socks')
+                    // .addField('osu', 'Plays the osu opening sound in your current voice channel')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
