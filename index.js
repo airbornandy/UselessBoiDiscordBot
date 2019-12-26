@@ -4,7 +4,7 @@ const config = require("./config.json");
 const queue = new Map();
 const ytdl = require('ytdl-core');
 var prefix = config.prefix;
-let owners = [config.ownerID, config.ownerID2];
+let owners = [config.ownerID];
 
 
 client.once('ready', () => {
