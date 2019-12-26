@@ -1,19 +1,10 @@
-import {
-    Client,
-    RichEmbed
-} from 'discord.js';
-const client = new Client();
-import {
-    prefix as _prefix,
-    ownerID,
-    token
-} from "./config.json";
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const config = require("./config.json");
 const queue = new Map();
-import ytdl, {
-    getInfo
-} from 'ytdl-core';
-var prefix = _prefix;
-let owners = [ownerID];
+const ytdl = require('ytdl-core');
+var prefix = config.prefix;
+let owners = [config.ownerID];
 
 
 client.once('ready', () => {
@@ -139,7 +130,7 @@ client.on('message', msg => {
                 msg.reply(`Your cuteness number is ${cuteness}`);
 
             case 'help':
-                const helpEmbed = new RichEmbed()
+                const helpEmbed = new Discord.RichEmbed()
                     .setColor('#fce300')
                     .setTitle('Useles Boi Commands')
                     .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
@@ -203,7 +194,7 @@ async function execute(message, serverQueue) {
         return message.channel.send('I need the permissions to join and speak in your voice channel!');
     }
 
-    const songInfo = await getInfo(args[1]);
+    const songInfo = await ytdl.getInfo(args[1]);
     const song = {
         title: songInfo.title,
         url: songInfo.video_url,
@@ -236,7 +227,7 @@ async function execute(message, serverQueue) {
     } else {
         serverQueue.songs.push(song);
         console.log(serverQueue.songs);
-        const songAddedEmbed = new RichEmbed()
+        const songAddedEmbed = new Discord.RichEmbed()
             .setColor('#fce300')
             .setTitle(`Added ${song.title} to queue!`)
             .setURL(song.url)
@@ -322,4 +313,4 @@ client.on('message', msg => {
     });
 });
 
-client.login(token);
+client.login(config.token);
