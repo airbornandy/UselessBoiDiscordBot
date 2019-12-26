@@ -126,9 +126,11 @@ client.on('message', msg => {
 
                 break;
             case 'howcute':
-                let cuteness = 100;
-                msg.reply(`Your cuteness number is ${cuteness}`);
-
+                msg.reply(`Your cuteness rating is 100`);
+                break;
+            case 'raw':
+                msg.reply('Don\'t take it raw, always wrap it before you tap it')
+                break;
             case 'help':
                 const helpEmbed = new Discord.RichEmbed()
                     .setColor('#fce300')
