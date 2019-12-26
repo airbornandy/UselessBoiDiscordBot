@@ -169,6 +169,7 @@ client.on('message', msg => {
                     .addField('skip', 'Skips current playing audio')
                     .addField('stop', 'Stops all audio and deletes queue')
                     .addField('cookie {user}', 'Gives the specified user a cookie')
+                    .addField('howcute', 'Rates how cute you are on a scale of 100-100')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
