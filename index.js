@@ -14,24 +14,6 @@ client.once('ready', () => {
 client.on('message', msg => {
     const args = msg.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
-    const superPowers = [
-        'teleportation',
-        'invisibility',
-        'mind reader',
-        'flying',
-        'water breathing',
-        'telepathy',
-        'telekenesis',
-        'superspeed',
-        'aquaman',
-        'shapeshifting',
-        'XRay vision',
-        'Super strength',
-        'Walk through walls',
-        'Mind control',
-        'Talk with animals',
-        'Control gravity'
-    ];
 
     if (msg.channel.type === 'dm') {
         if (msg.author.bot) return;
