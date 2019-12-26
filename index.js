@@ -8,7 +8,7 @@ let owners = [config.ownerID, config.ownerID2];
 
 
 client.once('ready', () => {
-	console.log('Ready!');
+    console.log('Ready!');
 });
 
 client.on('message', msg => {
@@ -34,7 +34,7 @@ client.on('message', msg => {
     ];
 
     if (msg.channel.type === 'dm') {
-        if(msg.author.bot) return;
+        if (msg.author.bot) return;
         client.channels.get('658766749122035724').send('DM from <@' + msg.author.id + '> containing message ' + '"' + msg.content + '"');
     }
 
@@ -63,10 +63,10 @@ client.on('message', msg => {
                 break;
             case 'vibecheck':
                 let vibe = Math.random() * 100;
-                vibe = Math.max( Math.round(vibe * 10) / 10, 2.8 ).toFixed(1);
-                
-                console.log(msg.author.username  + ' ' + vibe);
-                if(vibe >= 51) {
+                vibe = Math.max(Math.round(vibe * 10) / 10, 2.8).toFixed(1);
+
+                console.log(msg.author.username + ' ' + vibe);
+                if (vibe >= 51) {
                     msg.reply(`What a bottom. ${vibe}%`);
                 } else if (vibe <= 49) {
                     msg.reply(`What a top. ${vibe}%`);
@@ -82,20 +82,20 @@ client.on('message', msg => {
                 break;
             case 'say':
                 const sayMessage = args.join(" ");
-                msg.delete().catch(O_o=>{}); 
+                msg.delete().catch(O_o => {});
                 msg.channel.send(sayMessage);
                 break;
             case 'howgay':
                 let gayness = Math.random() * 100;
-                gayness = Math.max( Math.round(gayness * 10) / 10, 2.8 ).toFixed(1);
+                gayness = Math.max(Math.round(gayness * 10) / 10, 2.8).toFixed(1);
                 msg.reply(`You are ${gayness}% Gay`);
                 break;
             case 'stab':
                 const stabUser = msg.mentions.users.first();
-                if(stabUser) {
+                if (stabUser) {
                     const stabMember = msg.guild.member(stabUser);
-                    if(stabMember) {
-                        if(stabUser.id === msg.author.id) {
+                    if (stabMember) {
+                        if (stabUser.id === msg.author.id) {
                             msg.reply('Lets not do that');
                         } else {
                             msg.reply(`stabbed <@${stabUser.id}>`);
@@ -114,7 +114,7 @@ client.on('message', msg => {
                 const avatarList = msg.mentions.users.map(user => {
                     return `${user.username}\'s avatar: ${user.displayAvatarURL}`;
                 });
-                msg.channel.send(avatarList);      
+                msg.channel.send(avatarList);
                 break;
             case 'textuser':
                 const textUser = msg.mentions.users.first();
@@ -135,22 +135,17 @@ client.on('message', msg => {
             case 'cookie':
                 const cookieUser = msg.mentions.users.first();
 
-                if(cookieUser === msg.author) {
+                if (cookieUser === msg.author) {
                     msg.reply("Don't hog all the cookies for yourself");
                     return;
                 }
 
                 msg.reply('Given a :cookie: to ' + cookieUser);
-                
+
                 break;
-            /* case 'sound':
-                const broadcast = client.createVoiceBroadcast();
-                broadcast.playFile('./sounds/POMF.mp3');
-                // Play "music.mp3" in all voice connections that the client is in
-                for (const connection of client.voiceConnections.values()) {
-                    connection.playBroadcast(broadcast);
-                }
-                break; */
+            case 'howcute':
+                let cuteness = 100;
+                msg.reply(`Your cuteness number is ${cuteness}`);
 
             case 'help':
                 const helpEmbed = new Discord.RichEmbed()
@@ -176,85 +171,85 @@ client.on('message', msg => {
                     .addField('cookie {user}', 'Gives the specified user a cookie')
 
                     .setTimestamp()
-	                .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
+                    .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
 
                 msg.channel.send(helpEmbed);
                 break;
             case '':
                 msg.reply('Please enter a valid command');
-                break;     
-        } 
+                break;
+        }
     }
 });
 
 client.on('message', async message => {
 
-	if (message.author.bot) return;
-	if (!message.content.startsWith(prefix)) return;
+    if (message.author.bot) return;
+    if (!message.content.startsWith(prefix)) return;
 
     const serverQueue = queue.get(message.guild.id);
 
-	if (message.content.startsWith(`${prefix}play`)) {
-		execute(message, serverQueue);
-		return;
-	} else if (message.content.startsWith(`${prefix}skip`)) {
-		skip(message, serverQueue);
-		return;
-	} else if (message.content.startsWith(`${prefix}stop`)) {
-		stop(message, serverQueue);
-		return;      
+    if (message.content.startsWith(`${prefix}play`)) {
+        execute(message, serverQueue);
+        return;
+    } else if (message.content.startsWith(`${prefix}skip`)) {
+        skip(message, serverQueue);
+        return;
+    } else if (message.content.startsWith(`${prefix}stop`)) {
+        stop(message, serverQueue);
+        return;
     }
 });
 
 async function execute(message, serverQueue) {
     const args = message.content.split(' ');
 
-	const voiceChannel = message.member.voiceChannel;
-	if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
-	const permissions = voiceChannel.permissionsFor(message.client.user);
-	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
-		return message.channel.send('I need the permissions to join and speak in your voice channel!');
-	}
+    const voiceChannel = message.member.voiceChannel;
+    if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
+    const permissions = voiceChannel.permissionsFor(message.client.user);
+    if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
+        return message.channel.send('I need the permissions to join and speak in your voice channel!');
+    }
 
-	const songInfo = await ytdl.getInfo(args[1]);
-	const song = {
+    const songInfo = await ytdl.getInfo(args[1]);
+    const song = {
         title: songInfo.title,
         url: songInfo.video_url,
         id: songInfo.video_id,
     };
 
-	if (!serverQueue) {
-		const queueContruct = {
-			textChannel: message.channel,
-			voiceChannel: voiceChannel,
-			connection: null,
-			songs: [],
-			volume: 5,
-			playing: true,
-		};
+    if (!serverQueue) {
+        const queueContruct = {
+            textChannel: message.channel,
+            voiceChannel: voiceChannel,
+            connection: null,
+            songs: [],
+            volume: 5,
+            playing: true,
+        };
 
-		queue.set(message.guild.id, queueContruct);
+        queue.set(message.guild.id, queueContruct);
 
-		queueContruct.songs.push(song);
+        queueContruct.songs.push(song);
 
-		try {
-			var connection = await voiceChannel.join();
-			queueContruct.connection = connection;
-			play(message.guild, queueContruct.songs[0]);
-		} catch (err) {
-			console.log(err);
-			queue.delete(message.guild.id);
-			return message.channel.send(err);
-		}
-	} else {
-		serverQueue.songs.push(song);
-		console.log(serverQueue.songs);
-		const songAddedEmbed = new Discord.RichEmbed()
-        .setColor('#fce300')
-        .setTitle(`Added ${song.title} to queue!`)
-        .setURL(song.url)
-        .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
-        .setThumbnail(song.thumbnail);
+        try {
+            var connection = await voiceChannel.join();
+            queueContruct.connection = connection;
+            play(message.guild, queueContruct.songs[0]);
+        } catch (err) {
+            console.log(err);
+            queue.delete(message.guild.id);
+            return message.channel.send(err);
+        }
+    } else {
+        serverQueue.songs.push(song);
+        console.log(serverQueue.songs);
+        const songAddedEmbed = new Discord.RichEmbed()
+            .setColor('#fce300')
+            .setTitle(`Added ${song.title} to queue!`)
+            .setURL(song.url)
+            .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
+            .setThumbnail(song.thumbnail);
 
 
         return message.channel.send(songAddedEmbed);
@@ -263,57 +258,57 @@ async function execute(message, serverQueue) {
 }
 
 function skip(message, serverQueue) {
-	if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
-	if (!serverQueue) return message.channel.send('There is no song that I could skip!');
-	serverQueue.connection.dispatcher.end();
+    if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
+    if (!serverQueue) return message.channel.send('There is no song that I could skip!');
+    serverQueue.connection.dispatcher.end();
 }
 
 function stop(message, serverQueue) {
-	if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
-	serverQueue.songs = [];
-	serverQueue.connection.dispatcher.end();
+    if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
+    serverQueue.songs = [];
+    serverQueue.connection.dispatcher.end();
 }
 
 function play(guild, song) {
-	const serverQueue = queue.get(guild.id);
+    const serverQueue = queue.get(guild.id);
 
-	if (!song) {
+    if (!song) {
         serverQueue.voiceChannel.leave()
-		queue.delete(guild.id);
-		return;
-	}
+        queue.delete(guild.id);
+        return;
+    }
 
-	const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
-		.on('end', () => {
-			console.log('Music ended!');
-			serverQueue.songs.shift();
-			play(guild, serverQueue.songs[0]);
-		})
-		.on('error', error => {
-			console.error(error);
-		});
-	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+    const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+        .on('end', () => {
+            console.log('Music ended!');
+            serverQueue.songs.shift();
+            play(guild, serverQueue.songs[0]);
+        })
+        .on('error', error => {
+            console.error(error);
+        });
+    dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 }
 
 function queueCommand(message, serverQueue) {
-    
+
 }
 
 client.on('message', msg => {
-    if(msg.author.bot) return;
+    if (msg.author.bot) return;
 
     let message = msg.content.split(' ');
 
     message.forEach(word => {
-        if(word.toLowerCase() === 'ugly') {
+        if (word.toLowerCase() === 'ugly') {
             msg.reply('Shush you beautiful hooman, no one is ugly');
         }
 
-        if(word.toLowerCase() === 'cute') {
+        if (word.toLowerCase() === 'cute') {
             msg.reply('Oh cute? why yes you are');
         }
 
-        if(word.toLowerCase() === '私は醜いです') {
+        if (word.toLowerCase() === '私は醜いです') {
             msg.reply('shush beautiful hooman');
         }
 
