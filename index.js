@@ -139,8 +139,10 @@ client.on('message', msg => {
 
                 msg.channel.send(noToeSock);
                 break;
-            case '':
-
+            case 'love':
+                const loveUser = msg.mentions.users.first();
+                msg.channel.send(`Fun Fact: <@${msg.author.id}> loves <@${loveUser.id}>`);
+                break;
             case 'help':
                 const helpEmbed = new Discord.RichEmbed()
                     .setColor('#fce300')
@@ -166,6 +168,7 @@ client.on('message', msg => {
                     .addField('howcute', 'Rates how cute you are on a scale of 100-100')
                     .addField('raw', 'Some good advice')
                     .addField('toeless', 'Sends a photo of toeless socks')
+                    .addField('love', 'Mention a user to love them')
                     // .addField('osu', 'Plays the osu opening sound in your current voice channel') // Soon to be added command
 
                     .setTimestamp()
