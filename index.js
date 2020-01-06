@@ -111,6 +111,7 @@ client.on('message', msg => {
                 msg.channel.send("Ducks have maze vaginas");
                 msg.channel.send("Ducks have corkscrew dicks");
                 msg.channel.send('Ducks eat eachother when they\'re bored');
+                msg.channel.send('Duck Murder!!!!!!');
                 msg.channel.send('Ask <@557226379456806916> for more duck facts');
                 break;
 
@@ -309,8 +310,12 @@ client.on('message', msg => {
             msg.reply('Oh cute? why yes you are');
         }
 
-        if (word.toLowerCase() === '私は醜いです') {
+        if (word.toLowerCase() === '私は醜いです' || word.toLowerCase() === '私はぶす') {
             msg.reply('shush beautiful hooman');
+        }
+
+        if (word.toLowerCase() === 'pussy') {
+            msg.channel.send('Did you mean: Vagina?');
         }
 
         /* if(word.toLowerCase() === 'im') {
