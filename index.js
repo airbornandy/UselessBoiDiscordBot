@@ -64,7 +64,7 @@ client.on('message', msg => {
                 break;
             case 'say':
                 const sayMessage = args.join(" ");
-                msg.delete().catch(O_o => {});
+                msg.delete().catch(O_o => { });
                 msg.channel.send(sayMessage);
                 break;
             case 'howgay':
@@ -144,6 +144,9 @@ client.on('message', msg => {
                 const loveUser = msg.mentions.users.first();
                 msg.channel.send(`Fun Fact: <@${msg.author.id}> loves <@${loveUser.id}>`);
                 break;
+            case 'hellothere':
+                msg.channel.send(`General <@${msg.author.id}>, You are a bold one`);
+                break;
             case 'help':
                 const helpEmbed = new Discord.RichEmbed()
                     .setColor('#fce300')
@@ -170,6 +173,7 @@ client.on('message', msg => {
                     .addField('raw', 'Some good advice')
                     .addField('toeless', 'Sends a photo of toeless socks')
                     .addField('love', 'Mention a user to love them')
+                    .addField('hellothere', 'General Kenobi')
                     // .addField('osu', 'Plays the osu opening sound in your current voice channel') // Soon to be added command
 
                     .setTimestamp()
