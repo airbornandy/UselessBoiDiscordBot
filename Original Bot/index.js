@@ -9,6 +9,7 @@ let owners = [config.ownerID];
 
 client.once('ready', () => {
     console.log('Ready!');
+    console.log(client.guilds);
 });
 
 client.on('message', msg => {
