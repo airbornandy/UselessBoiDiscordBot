@@ -147,6 +147,10 @@ client.on('message', msg => {
             case 'hellothere':
                 msg.channel.send(`General <@${msg.author.id}>, You are a bold one`);
                 break;
+            case 'care':
+                const careUser = msg.mentions.users.first();
+                msg.reply(`cares about <@${careUser.id}>`);
+                break;
             case 'help':
                 const helpEmbed = new Discord.RichEmbed()
                     .setColor('#fce300')
