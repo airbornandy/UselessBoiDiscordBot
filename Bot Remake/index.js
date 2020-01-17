@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const botConfig = require("./config.json");
-const client = new Discord.Client({disableEveryone: true});
+const client = new Discord.Client();
 let prefix = botConfig.prefix;
 const fs = require("fs")
 client.commands = new Discord.Collection();
@@ -30,7 +30,13 @@ client.on('message', async msg => {
 
     if (!msg.content.startsWith(prefix)) return;
 
-    let messageArray
+    let messageArray = msg.content.split(/ +/);
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+
+    let commandFile = client.commands.get(cmd.slice(prefix.length));
+    if (commandFile) commandFile.run(client, msg, args);
+    if (msg.content.indexOf(prefix) !== 0) return;
 })
 
-client.login(botConfig.token)
+client.login(botConfig.token);
