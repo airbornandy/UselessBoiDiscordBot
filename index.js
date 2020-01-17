@@ -178,7 +178,6 @@ client.on('message', msg => {
                     .addField('toeless', 'Sends a photo of toeless socks')
                     .addField('love', 'Mention a user to love them')
                     .addField('hellothere', 'General Kenobi')
-                    // .addField('osu', 'Plays the osu opening sound in your current voice channel') // Soon to be added command
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
