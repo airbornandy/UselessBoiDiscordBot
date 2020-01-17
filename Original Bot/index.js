@@ -299,10 +299,6 @@ function play(guild, song) {
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 }
 
-function queueCommand(message, serverQueue) {
-
-}
-
 client.on('message', msg => {
     if (msg.author.bot) return;
 
