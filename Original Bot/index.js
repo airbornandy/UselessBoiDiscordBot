@@ -199,9 +199,6 @@ client.on('message', msg => {
 
                 msg.channel.send(helpEmbed);
                 break;
-            case '':
-                msg.reply('Please enter a valid command');
-                break;
         }
     }
 
