@@ -7,6 +7,7 @@ var prefix = config.prefix;
 let owners = [config.ownerID];
 
 
+
 let raining = false;
 
 
@@ -53,14 +54,27 @@ client.on('message', msg => {
                 let vibe = Math.random() * 100;
                 vibe = Math.max(Math.round(vibe * 10) / 10, 2.8).toFixed(1);
 
-                console.log(msg.author.username + ' ' + vibe);
-                if (vibe >= 51) {
-                    msg.reply(`What a bottom. ${vibe}%`);
-                } else if (vibe <= 49) {
-                    msg.reply(`What a top. ${vibe}%`);
-                } else if (vibe == 50) {
-                    msg.reply(`What a switch. ${vibe}%`)
+                if (!msg.mentions.users.size) {
+                    if (vibe >= 51) {
+                        msg.reply(`What a bottom. ${vibe}%`);
+                    } else if (vibe <= 49) {
+                        msg.reply(`What a top. ${vibe}%`);
+                    } else if (vibe == 50) {
+                        msg.reply(`What a switch. ${vibe}%`)
+                    }
+                } else {
+                    let vibeUser = msg.mentions.users.first();
+                    if (msg.author === vibeUser) return msg.reply("You do not have mention yourself to vibecheck youself");
+                    if (vibe >= 51) {
+                        msg.reply(`<@${vibeUser.id}> is a bottom. ${vibe}%`);
+                    } else if (vibe <= 49) {
+                        msg.reply(`<@${vibeUser.id}> is a top. ${vibe}%`);
+                    } else if (vibe == 50) {
+                        msg.reply(`<@${vibeUser.id}> is a switch. ${vibe}%`)
+                    }
                 }
+
+                
                 break;
             case 'h':
                 msg.channel.send('hee hee haw haw')
