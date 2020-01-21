@@ -7,14 +7,19 @@ var prefix = config.prefix;
 let owners = [config.ownerID];
 
 
+let raining = false;
+
+
 client.once('ready', () => {
-    console.log('Ready!');
-    console.log(client.guilds);
+    console.log('Ready!');a
 });
 
 client.on('message', msg => {
     const args = msg.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
+
+    if (msg.author.bot) return;
+    
 
     if (msg.channel.type === 'dm') {
         if (msg.author.bot) return;
@@ -152,6 +157,15 @@ client.on('message', msg => {
                 const careUser = msg.mentions.users.first();
                 msg.reply(`cares about <@${careUser.id}>`);
                 break;
+            case 'toggledownfall':
+                if (raining === true) {
+                    raining = false;
+                    msg.channel.send("Rain Disabled")
+                } else {
+                    raining = true;
+                    msg.channel.send("Rain Enabled")
+                }
+                break;
             case 'help':
                 const helpEmbed = new Discord.RichEmbed()
                     .setColor('#fce300')
@@ -190,6 +204,13 @@ client.on('message', msg => {
                 break;
         }
     }
+
+    if (raining === true) {
+        msg.channel.send(":droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet: ")
+    } else {
+        return;
+    }
+
 });
 
 client.on('message', async message => {
