@@ -15,8 +15,8 @@ client.once('ready', () => {
     client.user.setStatus('available')
     client.user.setPresence({
         game: {
-            name: 'with Alex\'s Emotions',
-            type: "PLAYING",
+            name: 'Alex Suffer',
+            type: "WATCHING",
         }
     });
 });
@@ -203,9 +203,9 @@ client.on   ('message', msg => {
                 }
                 break;
             case 'help':
-                const helpEmbed1 = new Discord.RichEmbed()
+                const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
-                    .setTitle('Useles Boi Commands')
+                    .setTitle('Useles Boi Misc Commands')
                     .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
                     .addField('hailrussia', 'Sends a communist flag made with emojis')
                     .addField('andioop', 'Uses emojis to spell "and i oop"')
@@ -232,7 +232,7 @@ client.on   ('message', msg => {
                     .setTimestamp()
                     .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
 
-                const helpEmbed2 = new Discord.RichEmbed()
+                const musicHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
                     .setTitle('Useles Boi Music Commands')
                     .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
@@ -242,8 +242,8 @@ client.on   ('message', msg => {
                 
                     .setTimestamp()
                     .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
-                msg.channel.send(helpEmbed1);
-                msg.channel.send(helpEmbed2);
+                msg.channel.send(miscHelp);
+                msg.channel.send(musicHelp);
                 break;
         }
     }
@@ -253,6 +253,7 @@ client.on   ('message', msg => {
             msg.channel.send(":droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet: ")
         } else return;
     }
+    
     if (day != 0 || day != 6) {
         if (hour <= 6) {
             if (msg.guild.id === '623614905118883880') {
