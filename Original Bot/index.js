@@ -16,7 +16,7 @@ client.once('ready', () => {
     client.user.setPresence({
         game: {
             name: 'Alex Suffer',
-            type: "WATCHING",
+            type: "WATCHING"
         }
     });
 });
