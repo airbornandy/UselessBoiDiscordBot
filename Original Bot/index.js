@@ -411,5 +411,4 @@ client.on('message', msg => {
     });
 });
 
-// THIS IS A TEST
 client.login(config.token);
