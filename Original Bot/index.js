@@ -15,8 +15,8 @@ client.once('ready', () => {
     client.user.setStatus('available')
     client.user.setPresence({
         game: {
-            name: 'with depression',
-            type: "WATCH",
+            name: 'with Alex\'s Emotions',
+            type: "PLAYING",
         }
     });
 });
@@ -253,10 +253,11 @@ client.on   ('message', msg => {
             msg.channel.send(":droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet: ")
         } else return;
     }
-
-    if (hour <= 6) {
-        if (msg.guild.id === '623614905118883880') {
-            msg.reply("GO BED!!")
+    if (day != 0 || day != 6) {
+        if (hour <= 6) {
+            if (msg.guild.id === '623614905118883880') {
+                msg.reply("GO BED!!")
+            }
         }
     }
 });
