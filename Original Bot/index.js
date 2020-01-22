@@ -5,19 +5,29 @@ const queue = new Map();
 const ytdl = require('ytdl-core');
 var prefix = config.prefix;
 let owners = [config.ownerID];
-
-
+let yeetshire = config.mainGuildID;
 
 let raining = false;
 
 
 client.once('ready', () => {
     console.log('Ready!');
+    client.user.setStatus('available')
+    client.user.setPresence({
+        game: {
+            name: 'with depression',
+            type: "WATCH",
+        }
+    });
 });
 
-client.on('message', msg => {
+client.on   ('message', msg => {
     const args = msg.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
+
+    let time = new Date()
+    let hour = time.getHours();
+    let day = time.getDay();
 
     if (msg.author.bot) return;
     
@@ -90,7 +100,19 @@ client.on('message', msg => {
             case 'howgay':
                 let gayness = Math.random() * 100;
                 gayness = Math.max(Math.round(gayness * 10) / 10, 2.8).toFixed(1);
-                msg.reply(`You are ${gayness}% Gay`);
+
+                if (!msg.mentions.users.size) {
+                    msg.reply(`You are ${gayness}% gay`)
+                } else {
+                    let gayUser = msg.mentions.users.first();
+                    if (msg.author === gayUser) return msg.reply("You do not have mention yourself to vibecheck youself");
+                    
+                    if (gayUser.id === `398332620510855168`) {
+                        gayness = 100
+                    }
+
+                    msg.reply(`<@${gayUser.id}> is ${gayness}% gay`)
+                }
                 break;
             case 'stab':
                 const stabUser = msg.mentions.users.first();
@@ -181,7 +203,7 @@ client.on('message', msg => {
                 }
                 break;
             case 'help':
-                const helpEmbed = new Discord.RichEmbed()
+                const helpEmbed1 = new Discord.RichEmbed()
                     .setColor('#fce300')
                     .setTitle('Useles Boi Commands')
                     .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
@@ -193,14 +215,11 @@ client.on('message', msg => {
                     .addField('h', 'Replys with "hee hee haw haw"')
                     .addField('wsc', 'Wanna Sprite Cranberry?')
                     .addField('say {message}', 'Says the specified message')
-                    .addField('howgay', 'Rates how gay you are')
+                    .addField('howgay {user)', 'Rates how gay you are')
                     .addField('stab {user}', 'Tag a user to stab them')
                     .addField('avatar [user]', 'Tag a member to get a link to their profile picture, if a user is not tagged the bot with send your profile picture')
                     .addField('textuser {user} {message}', 'Sends the specified member a dm with the specified message')
                     .addField('ducks', 'Replys with random duck facts')
-                    .addField('play {link}', 'Plays the audio from a youtube video')
-                    .addField('skip', 'Skips current playing audio')
-                    .addField('stop', 'Stops all audio and deletes queue')
                     .addField('cookie {user}', 'Gives the specified user a cookie')
                     .addField('howcute', 'Rates how cute you are on a scale of 100-100')
                     .addField('raw', 'Some good advice')
@@ -213,17 +232,33 @@ client.on('message', msg => {
                     .setTimestamp()
                     .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
 
-                msg.channel.send(helpEmbed);
+                const helpEmbed2 = new Discord.RichEmbed()
+                    .setColor('#fce300')
+                    .setTitle('Useles Boi Music Commands')
+                    .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
+                    .addField('play {link}', 'Plays the audio from a youtube video')
+                    .addField('skip', 'Skips current playing audio')
+                    .addField('stop', 'Stops all audio and deletes queue')
+                
+                    .setTimestamp()
+                    .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
+                msg.channel.send(helpEmbed1);
+                msg.channel.send(helpEmbed2);
                 break;
         }
     }
 
     if (raining === true) {
-        msg.channel.send(":droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet: ")
-    } else {
-        return;
+        if (msg.guild.id === '623614905118883880') {
+            msg.channel.send(":droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet: ")
+        } else return;
     }
 
+    if (hour <= 6) {
+        if (msg.guild.id === '623614905118883880') {
+            msg.reply("GO BED!!")
+        }
+    }
 });
 
 client.on('message', async message => {
