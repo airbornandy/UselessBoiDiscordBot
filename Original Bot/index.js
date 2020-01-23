@@ -227,7 +227,7 @@ client.on   ('message', msg => {
                     .addField('love', 'Mention a user to love them')
                     .addField('hellothere', 'General Kenobi')
                     .addField('care {user)', 'Mention a user to care about them')
-                    .addField('toggledownfall', 'Toggles downfall')
+                    .addField('toggledownfall', 'Toggles downfall (Yeetshire only)')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
