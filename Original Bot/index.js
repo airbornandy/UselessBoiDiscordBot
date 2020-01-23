@@ -202,6 +202,9 @@ client.on   ('message', msg => {
                     msg.channel.send("Rain Enabled")
                 }
                 break;
+            case 'electricchair':
+                msg.channel.send("Roberto Nevillis is an evil man and has caused academic stress and depression in many people. ELECTRIC CHAIR!!!!");
+                break;
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
@@ -228,6 +231,7 @@ client.on   ('message', msg => {
                     .addField('hellothere', 'General Kenobi')
                     .addField('care {user)', 'Mention a user to care about them')
                     .addField('toggledownfall', 'Toggles downfall (Yeetshire only)')
+                    .addField('electricchair', 'Kill Roberto Nevillis')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
