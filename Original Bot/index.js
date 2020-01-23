@@ -227,7 +227,7 @@ client.on   ('message', msg => {
                     .addField('howcute', 'Rates how cute you are on a scale of 100-100')
                     .addField('raw', 'Some good advice')
                     .addField('toeless', 'Sends a photo of toeless socks')
-                    .addField('love', 'Mention a user to love them')
+                    .addField('love {user}', 'Mention a user to love them')
                     .addField('hellothere', 'General Kenobi')
                     .addField('care {user)', 'Mention a user to care about them')
                     .addField('toggledownfall', 'Toggles downfall (Yeetshire only)')
