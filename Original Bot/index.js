@@ -19,7 +19,6 @@ client.once('ready', () => {
             type: "WATCHING"
         }
     });
-    console.log(client);
 });
 
 client.on   ('message', msg => {
@@ -206,6 +205,25 @@ client.on   ('message', msg => {
             case 'electricchair':
                 msg.channel.send("Roberto Nevillis is an evil man and has caused academic stress and depression in many people. ELECTRIC CHAIR!!!!");
                 break;
+            case 'randomping':
+                let pingGuild = msg.channel.guild;
+                let randomGuildMember = pingGuild.members.random();
+                let randomGuildChannel = randomGuildMember.user.client.channels.random();
+                
+                while (randomGuildMember.user.bot === true) {
+                    randomGuildMember = pingGuild.members.random();
+                }
+
+                while (randomGuildChannel.type === 'voice') {
+                    randomGuildChannel = randomGuildMember.guild.channels.random();
+                }
+                
+                client.channels.get(randomGuildChannel.id).send(`<@${randomGuildMember.id}>`);
+                msg.channel.send(`Pinged ${randomGuildMember.user.username} in channel ${randomGuildChannel.name} on server ${pingGuild.name}`);
+                randomPingGuild = null;
+                randomGuildMember = null;
+                randomGuildChannel = null;
+                break;
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
@@ -227,6 +245,7 @@ client.on   ('message', msg => {
                     .addField('hellothere', 'General Kenobi')
                     .addField('toggledownfall', 'Toggles downfall (Yeetshire only)')
                     .addField('electricchair', 'Kill Roberto Nevillis')
+                    .addField('randomping', 'Pings a random user in a random channel in the current guild you are in')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL}`);
