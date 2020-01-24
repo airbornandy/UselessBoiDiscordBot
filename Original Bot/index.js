@@ -292,7 +292,7 @@ client.on   ('message', msg => {
         } else return;
     }
     
-    if (day != 0 || day != 6) {
+    if (day != 5 || day != 6) {
         if (hour <= 6) {
             if (msg.guild.id === '623614905118883880') {
                 msg.reply("GO BED!!")
