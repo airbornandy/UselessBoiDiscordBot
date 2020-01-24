@@ -208,7 +208,7 @@ client.on   ('message', msg => {
             case 'randomping':
                 let pingGuild = msg.channel.guild;
                 let randomGuildMember = pingGuild.members.random();
-                let randomGuildChannel = randomGuildMember.user.client.channels.random();
+                let randomGuildChannel = randomGuildMember.guild.channels.random();
                 
                 while (randomGuildMember.user.bot === true) {
                     randomGuildMember = pingGuild.members.random();
@@ -220,7 +220,8 @@ client.on   ('message', msg => {
                 
                 client.channels.get(randomGuildChannel.id).send(`<@${randomGuildMember.id}>`);
                 msg.channel.send(`Pinged ${randomGuildMember.user.username} in channel ${randomGuildChannel.name} on server ${pingGuild.name}`);
-                randomPingGuild = null;
+
+                pingGuild = null;
                 randomGuildMember = null;
                 randomGuildChannel = null;
                 break;
