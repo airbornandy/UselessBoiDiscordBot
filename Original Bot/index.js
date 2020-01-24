@@ -19,6 +19,7 @@ client.once('ready', () => {
             type: "WATCHING"
         }
     });
+    console.log(client);
 });
 
 client.on   ('message', msg => {
@@ -208,8 +209,9 @@ client.on   ('message', msg => {
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
-                    .setTitle('Useles Boi Misc Commands')
-                    .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
+                    .setTitle(`${client.user.username} Misc Commands`)
+                    .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+
                     .addField('hailrussia', 'Sends a communist flag made with emojis')
                     .addField('andioop', 'Uses emojis to spell "and i oop"')
                     .addField('sksk', 'Uses emojis to spell "sksksksksksksk"')
@@ -218,36 +220,48 @@ client.on   ('message', msg => {
                     .addField('h', 'Replys with "hee hee haw haw"')
                     .addField('wsc', 'Wanna Sprite Cranberry?')
                     .addField('say {message}', 'Says the specified message')
-                    .addField('howgay {user)', 'Rates how gay you are')
-                    .addField('stab {user}', 'Tag a user to stab them')
-                    .addField('avatar [user]', 'Tag a member to get a link to their profile picture, if a user is not tagged the bot with send your profile picture')
-                    .addField('textuser {user} {message}', 'Sends the specified member a dm with the specified message')
                     .addField('ducks', 'Replys with random duck facts')
-                    .addField('cookie {user}', 'Gives the specified user a cookie')
                     .addField('howcute', 'Rates how cute you are on a scale of 100-100')
                     .addField('raw', 'Some good advice')
                     .addField('toeless', 'Sends a photo of toeless socks')
-                    .addField('love {user}', 'Mention a user to love them')
                     .addField('hellothere', 'General Kenobi')
-                    .addField('care {user)', 'Mention a user to care about them')
                     .addField('toggledownfall', 'Toggles downfall (Yeetshire only)')
                     .addField('electricchair', 'Kill Roberto Nevillis')
 
                     .setTimestamp()
-                    .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
+                    .setFooter('More commands coming soon', `${client.user.avatarURL}`);
 
                 const musicHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
-                    .setTitle('Useles Boi Music Commands')
-                    .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
+                    .setTitle(`${client.user.username} Music Commands`)
+                    .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+
                     .addField('play {link}', 'Plays the audio from a youtube video')
                     .addField('skip', 'Skips current playing audio')
                     .addField('stop', 'Stops all audio and deletes queue')
                 
                     .setTimestamp()
-                    .setFooter('More commands coming soon', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048');
+                    .setFooter('More commands coming soon', `${client.user.avatarURL}`);
+                
+                const userMentionsHelp = new Discord.RichEmbed()
+                    .setColor('#fce300')
+                    .setTitle(`${client.user.username} User Mention Commands`)
+                    .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+
+                    .addField('care {user)', 'Mention a user to care about them')
+                    .addField('love {user}', 'Mention a user to love them')
+                    .addField('cookie {user}', 'Gives the specified user a cookie')
+                    .addField('avatar {user}', 'Tag a member to get a link to their profile picture, if a user is not tagged the bot with send your profile picture')
+                    .addField('howgay {user)', 'Rates how gay you are')
+                    .addField('stab {user}', 'Tag a user to stab them')
+                    .addField('textuser {user} {message}', 'Sends the specified member a dm with the specified message')
+                
+                    .setTimestamp()
+                    .setFooter('More commands coming soon', `${client.user.avatarURL}`);
+                
                 msg.channel.send(miscHelp);
                 msg.channel.send(musicHelp);
+                msg.channel.send(userMentionsHelp);
                 break;
         }
     }
