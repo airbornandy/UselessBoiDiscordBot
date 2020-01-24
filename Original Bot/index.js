@@ -39,6 +39,11 @@ client.on   ('message', msg => {
 
     if (msg.content.slice(0, 1) === prefix) {
         switch (cmd) {
+            case 'guilds':
+                client.guilds.forEach(guild => {
+                    msg.channel.send(guild.name);
+                });
+                break;
             case 'hailrussia':
                 msg.delete();
                 msg.channel.send(":red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle:\n:red_circle::red_circle::red_circle::yellow_circle::red_circle::red_circle::red_circle::yellow_circle::yellow_circle::red_circle::red_circle::red_circle::red_circle:\n:red_circle::red_circle::yellow_circle::yellow_circle::yellow_circle::red_circle::red_circle::red_circle::red_circle::yellow_circle::red_circle::red_circle::red_circle:\n:red_circle::yellow_circle::yellow_circle::yellow_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::yellow_circle::red_circle::red_circle:\n:red_circle::red_circle::yellow_circle::red_circle::yellow_circle::red_circle::red_circle::red_circle::red_circle::red_circle::yellow_circle::red_circle::red_circle:\n:red_circle::red_circle::red_circle::red_circle::red_circle::yellow_circle::red_circle::red_circle::red_circle::red_circle::yellow_circle::red_circle::red_circle:\n:red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::yellow_circle::red_circle::red_circle::yellow_circle::red_circle::red_circle::red_circle:\n:red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::yellow_circle::yellow_circle::red_circle::red_circle::red_circle::red_circle:\n:red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::yellow_circle::yellow_circle::yellow_circle::red_circle::red_circle::red_circle::red_circle:\n:red_circle::red_circle::red_circle::red_circle::red_circle::yellow_circle::red_circle::red_circle::red_circle::yellow_circle::red_circle::red_circle::red_circle:\n:red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle::red_circle:");
