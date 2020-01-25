@@ -304,6 +304,12 @@ client.on   ('message', msg => {
             }
         }
     }
+
+    if (msg.channel.id === '670515035252195358') {
+        if (msg.content != '...Maybe he\'s just a chill guy') {
+            msg.delete();
+        }
+    }
 });
 
 client.on('message', async message => {
