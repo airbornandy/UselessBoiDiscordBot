@@ -226,6 +226,10 @@ client.on   ('message', msg => {
                 randomGuildMember = null;
                 randomGuildChannel = null;
                 break;
+            case 'bitethumb':
+                const biteThumbUser = msg.mentions.users.first();
+                msg.reply(`bites their thumb at <@${biteThumbUser.id}>`);
+                break;
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
@@ -276,6 +280,7 @@ client.on   ('message', msg => {
                     .addField('howgay {user)', 'Rates how gay you are')
                     .addField('stab {user}', 'Tag a user to stab them')
                     .addField('textuser {user} {message}', 'Sends the specified member a dm with the specified message')
+                    .addField('bitethumb {user}', 'Bite your thumb at the mentioned user')
                 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL}`);
