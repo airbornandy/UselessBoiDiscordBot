@@ -24,11 +24,7 @@ client.once('ready', () => {
 client.on   ('message', msg => {
     const args = msg.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
-
-    let time = new Date()
-    let hour = time.getHours();
-    let day = time.getDay();
-
+    
     if (msg.author.bot) return;
     
 
@@ -296,17 +292,9 @@ client.on   ('message', msg => {
             msg.channel.send(":droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet: ")
         } else return;
     }
-    
-    if (day != 5 || day != 6) {
-        if (hour <= 6) {
-            if (msg.guild.id === '623614905118883880') {
-                msg.reply("GO BED!!")
-            }
-        }
-    }
 
     if (msg.channel.id === '670515035252195358') {
-        if (msg.content != '...Maybe he\'s just a chill guy') {
+        if (msg.content != '...Maybe he\'s just a chill guy.') {
             msg.delete();
         }
     }
