@@ -206,26 +206,26 @@ client.on   ('message', msg => {
             case 'electricchair':
                 msg.channel.send("Roberto Nevillis is an evil man and has caused academic stress and depression in many people. ELECTRIC CHAIR!!!!");
                 break;
-            case 'randomping':
-                let pingGuild = msg.channel.guild;
-                let randomGuildMember = pingGuild.members.random();
-                let randomGuildChannel = randomGuildMember.guild.channels.random();
+            // case 'randomping':
+            //     let pingGuild = msg.channel.guild;
+            //     let randomGuildMember = pingGuild.members.random();
+            //     let randomGuildChannel = randomGuildMember.guild.channels.random();
                 
-                while (randomGuildMember.user.bot === true) {
-                    randomGuildMember = pingGuild.members.random();
-                }
+            //     while (randomGuildMember.user.bot === true) {
+            //         randomGuildMember = pingGuild.members.random();
+            //     }
 
-                while (randomGuildChannel.type === 'voice') {
-                    randomGuildChannel = randomGuildMember.guild.channels.random();
-                }
+            //     while (randomGuildChannel.type === 'voice') {
+            //         randomGuildChannel = randomGuildMember.guild.channels.random();
+            //     }
                 
-                client.channels.get(randomGuildChannel.id).send(`<@${randomGuildMember.id}>`);
-                msg.channel.send(`Pinged ${randomGuildMember.user.username} in channel ${randomGuildChannel.name} on server ${pingGuild.name}`);
+            //     client.channels.get(randomGuildChannel.id).send(`<@${randomGuildMember.id}>`);
+            //     msg.channel.send(`Pinged ${randomGuildMember.user.username} in channel ${randomGuildChannel.name} on server ${pingGuild.name}`);
 
-                pingGuild = null;
-                randomGuildMember = null;
-                randomGuildChannel = null;
-                break;
+            //     pingGuild = null;
+            //     randomGuildMember = null;
+            //     randomGuildChannel = null;
+            //     break;
             case 'bitethumb':
                 const biteThumbUser = msg.mentions.users.first();
                 msg.reply(`bites their thumb at <@${biteThumbUser.id}>`);
@@ -251,7 +251,7 @@ client.on   ('message', msg => {
                     .addField('hellothere', 'General Kenobi')
                     .addField('toggledownfall', 'Toggles downfall (Yeetshire only)')
                     .addField('electricchair', 'Kill Roberto Nevillis')
-                    .addField('randomping', 'Pings a random user in a random channel in the current guild you are in')
+                    // .addField('randomping', 'Pings a random user in a random channel in the current guild you are in')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL}`);
