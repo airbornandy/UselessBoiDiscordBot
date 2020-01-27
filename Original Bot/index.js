@@ -84,8 +84,6 @@ client.on   ('message', msg => {
                         msg.reply(`<@${vibeUser.id}> is a switch. ${vibe}%`)
                     }
                 }
-
-                
                 break;
             case 'h':
                 msg.channel.send('hee hee haw haw')
@@ -107,7 +105,7 @@ client.on   ('message', msg => {
                 } else {
                     let gayUser = msg.mentions.users.first();
                     if (msg.author === gayUser) return msg.reply("You do not have mention yourself to vibecheck youself");
-                    
+
                     if (gayUser.id === `398332620510855168`) {
                         gayness = 100
                     }
@@ -230,6 +228,9 @@ client.on   ('message', msg => {
                 const biteThumbUser = msg.mentions.users.first();
                 msg.reply(`bites their thumb at <@${biteThumbUser.id}>`);
                 break;
+	    case 'test':
+		msg.reply('Test Successful');
+		break;
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
@@ -454,3 +455,4 @@ client.on('message', msg => {
 });
 
 client.login(config.token);
+a
