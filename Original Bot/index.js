@@ -228,9 +228,6 @@ client.on   ('message', msg => {
                 const biteThumbUser = msg.mentions.users.first();
                 msg.reply(`bites their thumb at <@${biteThumbUser.id}>`);
                 break;
-	    case 'test':
-		msg.reply('Test Successful');
-		break;
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
@@ -455,4 +452,4 @@ client.on('message', msg => {
 });
 
 client.login(config.token);
-a
+
