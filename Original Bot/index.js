@@ -4,7 +4,7 @@ const config = require("./config.json");
 const queue = new Map();
 const ytdl = require('ytdl-core');
 var prefix = config.prefix;
-let owners = [config.ownerID];
+let owners = config.ownerID;
 let yeetshire = config.mainGuildID;
 
 let raining = false;
@@ -24,9 +24,8 @@ client.once('ready', () => {
 client.on   ('message', msg => {
     const args = msg.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
-    
+
     if (msg.author.bot) return;
-    
 
     if (msg.channel.type === 'dm') {
         if (msg.author.bot) return;
@@ -208,7 +207,7 @@ client.on   ('message', msg => {
             //     let pingGuild = msg.channel.guild;
             //     let randomGuildMember = pingGuild.members.random();
             //     let randomGuildChannel = randomGuildMember.guild.channels.random();
-                
+
             //     while (randomGuildMember.user.bot === true) {
             //         randomGuildMember = pingGuild.members.random();
             //     }
@@ -216,7 +215,7 @@ client.on   ('message', msg => {
             //     while (randomGuildChannel.type === 'voice') {
             //         randomGuildChannel = randomGuildMember.guild.channels.random();
             //     }
-                
+
             //     client.channels.get(randomGuildChannel.id).send(`<@${randomGuildMember.id}>`);
             //     msg.channel.send(`Pinged ${randomGuildMember.user.username} in channel ${randomGuildChannel.name} on server ${pingGuild.name}`);
 
@@ -262,10 +261,10 @@ client.on   ('message', msg => {
                     .addField('play {link}', 'Plays the audio from a youtube video')
                     .addField('skip', 'Skips current playing audio')
                     .addField('stop', 'Stops all audio and deletes queue')
-                
+
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL}`);
-                
+
                 const userMentionsHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
                     .setTitle(`${client.user.username} User Mention Commands`)
@@ -279,10 +278,10 @@ client.on   ('message', msg => {
                     .addField('stab {user}', 'Tag a user to stab them')
                     .addField('textuser {user} {message}', 'Sends the specified member a dm with the specified message')
                     .addField('bitethumb {user}', 'Bite your thumb at the mentioned user')
-                
+
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL}`);
-                
+
                 msg.channel.send(miscHelp);
                 msg.channel.send(musicHelp);
                 msg.channel.send(userMentionsHelp);
