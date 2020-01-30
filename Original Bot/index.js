@@ -230,8 +230,7 @@ client.on   ('message', msg => {
             case 'ghostping':
                 const ghostPingUser = msg.mentions.users.first();
                 msg.delete();
-                let m = msg.channel.send(`<@${ghostPingUser.id}>`);
-                m.delete();
+                msg.channel.send(`<@${ghostPingUser.id}>`).then(dmsg => { dmsg.delete(0); });
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
