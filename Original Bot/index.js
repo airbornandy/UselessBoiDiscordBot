@@ -227,6 +227,11 @@ client.on   ('message', msg => {
                 const biteThumbUser = msg.mentions.users.first();
                 msg.reply(`bites their thumb at <@${biteThumbUser.id}>`);
                 break;
+            case 'ghostping':
+                ghostPingUser = msg.mentions.user.first();
+                msg.delete();
+                let m = msg.channel.send(`<@${ghostPingUser}>`);
+                m.delete();
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
