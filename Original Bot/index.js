@@ -228,7 +228,7 @@ client.on   ('message', msg => {
                 msg.reply(`bites their thumb at <@${biteThumbUser.id}>`);
                 break;
             case 'ghostping':
-                ghostPingUser = msg.mentions.user.first();
+                const ghostPingUser = msg.mentions.users.first();
                 msg.delete();
                 let m = msg.channel.send(`<@${ghostPingUser}>`);
                 m.delete();
