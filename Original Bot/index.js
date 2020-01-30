@@ -230,7 +230,7 @@ client.on   ('message', msg => {
             case 'ghostping':
                 const ghostPingUser = msg.mentions.users.first();
                 msg.delete();
-                let m = msg.channel.send(`<@${ghostPingUser}>`);
+                let m = msg.channel.send(`<@${ghostPingUser.id}>`);
                 m.delete();
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
