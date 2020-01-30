@@ -231,6 +231,7 @@ client.on   ('message', msg => {
                 const ghostPingUser = msg.mentions.users.first();
                 msg.delete();
                 msg.channel.send(`<@${ghostPingUser.id}>`).then(dmsg => { dmsg.delete(0); });
+                break;
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
