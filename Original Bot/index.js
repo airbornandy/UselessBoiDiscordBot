@@ -308,13 +308,13 @@ client.on   ('message', msg => {
     }
 
     if (msg.channel.id === '641879072665763850' || msg.channel.id === '652275250377129984') {
-        if (msg.content === 'same' || msg.content === 'me') {
+        if (msg.content === 'same' || msg.content === 'me' || msg.content === 'oof') {
             msg.delete();
         }
 
         let ventWords = msg.content.split(' ');
         ventWords.forEach(word => {
-            if (word === 'oof') {
+            if (word === 'oof' || word === '"oof"' || word === '\`oof\`') {
                 msg.delete();
             }
         })
