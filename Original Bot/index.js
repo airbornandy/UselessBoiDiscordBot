@@ -314,7 +314,7 @@ client.on   ('message', msg => {
 
         let ventWords = msg.content.split(' ');
         ventWords.forEach(word => {
-            if (word === 'oof' || word === '"oof"' || word === '\`oof\`') {
+            if (word === 'oof') {
                 msg.delete();
             }
         })
