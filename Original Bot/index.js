@@ -297,12 +297,18 @@ client.on   ('message', msg => {
 
     if (raining === true) {
         if (msg.guild.id === '623614905118883880') {
-            msg.channel.send(":droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet:\n:droplet: :droplet: :droplet: ")
+            msg.channel.send(":droplet::droplet::droplet::droplet:\n  :droplet::droplet:　:droplet:\n    :droplet:　:droplet::droplet:\n      :droplet:　:droplet::droplet:")
         } else return;
     }
 
     if (msg.channel.id === '670515035252195358') {
         if (msg.content != '...Maybe he\'s just a chill guy.') {
+            msg.delete();
+        }
+    }
+
+    if (msg.channel.id === '641879072665763850' || msg.channel.id === '652275250377129984') {
+        if (msg.content === 'oof' || msg.content === 'same' || msg.content === 'me') {
             msg.delete();
         }
     }
