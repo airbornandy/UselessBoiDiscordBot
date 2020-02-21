@@ -235,7 +235,11 @@ client.on   ('message', msg => {
             case 'play':
                 const url = args[0];
                 let channel = msg.member.voiceChannel
-                play(channel, url)
+
+                channel.join();
+
+                play(channel, url);
+
                 break;
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
