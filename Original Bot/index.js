@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const queue = new Map();
 const ytdl = require('ytdl-core');
+const ffmpeg = require('ffmpeg');
 var prefix = config.prefix;
 let owners = config.ownerID;
 let yeetshire = config.mainGuildID;
