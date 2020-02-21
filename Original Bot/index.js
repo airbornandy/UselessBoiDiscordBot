@@ -234,7 +234,7 @@ client.on   ('message', msg => {
                 break;
             case 'play':
                 const url = args[0];
-                play(msg.author.client.voiceConnections.first, url)
+                play(msg.author.client.voice, url)
                 break;
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
