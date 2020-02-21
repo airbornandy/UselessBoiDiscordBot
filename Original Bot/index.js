@@ -233,7 +233,7 @@ client.on   ('message', msg => {
                 msg.channel.send(`<@${ghostPingUser.id}>`).then(dmsg => { dmsg.delete(0); });
                 break;
             case 'play':
-                const url = args[1];
+                const url = args[0];
                 play(msg.author.client.voiceConnections, url)
                 break;
             case 'help':
