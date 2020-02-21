@@ -3,7 +3,6 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const queue = new Map();
 const ytdl = require('ytdl-core');
-const ffmpeg = require('ffmpeg');
 var prefix = config.prefix;
 let owners = config.ownerID;
 let yeetshire = config.mainGuildID;
@@ -233,6 +232,10 @@ client.on   ('message', msg => {
                 msg.delete();
                 msg.channel.send(`<@${ghostPingUser.id}>`).then(dmsg => { dmsg.delete(0); });
                 break;
+            case 'play':
+                const url = args[1];
+                play(msg.author.client.voiceConnections, url)
+                break;
             case 'help':
                 const miscHelp = new Discord.RichEmbed()
                     .setColor('#fce300')
@@ -323,80 +326,86 @@ client.on   ('message', msg => {
     }
 });
 
-client.on('message', async message => {
-
-    if (message.author.bot) return;
-    if (!message.content.startsWith(prefix)) return;
-
-    const serverQueue = queue.get(message.guild.id);
-
-    if (message.content.startsWith(`${prefix}play`)) {
-        execute(message, serverQueue);
-        return;
-    } else if (message.content.startsWith(`${prefix}skip`)) {
-        skip(message, serverQueue);
-        return;
-    } else if (message.content.startsWith(`${prefix}stop`)) {
-        stop(message, serverQueue);
-        return;
-    }
-});
-
-async function execute(message, serverQueue) {
-    const args = message.content.split(' ');
-
-    const voiceChannel = message.member.voiceChannel;
-    if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
-    const permissions = voiceChannel.permissionsFor(message.client.user);
-    if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
-        return message.channel.send('I need the permissions to join and speak in your voice channel!');
-    }
-
-    const songInfo = await ytdl.getInfo(args[1]);
-    const song = {
-        title: songInfo.title,
-        url: songInfo.video_url,
-        id: songInfo.video_id,
-    };
-
-    if (!serverQueue) {
-        const queueContruct = {
-            textChannel: message.channel,
-            voiceChannel: voiceChannel,
-            connection: null,
-            songs: [],
-            volume: 5,
-            playing: true,
-        };
-
-        queue.set(message.guild.id, queueContruct);
-
-        queueContruct.songs.push(song);
-
-        try {
-            var connection = await voiceChannel.join();
-            queueContruct.connection = connection;
-            play(message.guild, queueContruct.songs[0]);
-        } catch (err) {
-            console.log(err);
-            queue.delete(message.guild.id);
-            return message.channel.send(err);
-        }
-    } else {
-        serverQueue.songs.push(song);
-        console.log(serverQueue.songs);
-        const songAddedEmbed = new Discord.RichEmbed()
-            .setColor('#fce300')
-            .setTitle(`Added ${song.title} to queue!`)
-            .setURL(song.url)
-            .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
-            .setThumbnail(song.thumbnail);
-
-
-        return message.channel.send(songAddedEmbed);
-    }
-
+async function play(connection, url) {
+    connection.play(await ytdl(url), {
+        type: 'opus'
+    });
 }
+
+// client.on('message', async message => {
+
+//     if (message.author.bot) return;
+//     if (!message.content.startsWith(prefix)) return;
+
+//     const serverQueue = queue.get(message.guild.id);
+
+//     if (message.content.startsWith(`${prefix}play`)) {
+//         execute(message, serverQueue);
+//         return;
+//     } else if (message.content.startsWith(`${prefix}skip`)) {
+//         skip(message, serverQueue);
+//         return;
+//     } else if (message.content.startsWith(`${prefix}stop`)) {
+//         stop(message, serverQueue);
+//         return;
+//     }
+// });
+
+// async function execute(message, serverQueue) {
+//     const args = message.content.split(' ');
+
+//     const voiceChannel = message.member.voiceChannel;
+//     if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
+//     const permissions = voiceChannel.permissionsFor(message.client.user);
+//     if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
+//         return message.channel.send('I need the permissions to join and speak in your voice channel!');
+//     }
+
+//     const songInfo = await ytdl.getInfo(args[1]);
+//     const song = {
+//         title: songInfo.title,
+//         url: songInfo.video_url,
+//         id: songInfo.video_id,
+//     };
+
+//     if (!serverQueue) {
+//         const queueContruct = {
+//             textChannel: message.channel,
+//             voiceChannel: voiceChannel,
+//             connection: null,
+//             songs: [],
+//             volume: 5,
+//             playing: true,
+//         };
+
+//         queue.set(message.guild.id, queueContruct);
+
+//         queueContruct.songs.push(song);
+
+//         try {
+//             var connection = await voiceChannel.join();
+//             queueContruct.connection = connection;
+//             play(message.guild, queueContruct.songs[0]);
+//         } catch (err) {
+//             console.log(err);
+//             queue.delete(message.guild.id);
+//             return message.channel.send(err);
+//         }
+//     } else {
+//         serverQueue.songs.push(song);
+//         console.log(serverQueue.songs);
+//         const songAddedEmbed = new Discord.RichEmbed()
+//             .setColor('#fce300')
+//             .setTitle(`Added ${song.title} to queue!`)
+//             .setURL(song.url)
+//             .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
+//             .setThumbnail(song.thumbnail);
+
+
+//         return message.channel.send(songAddedEmbed);
+//     }
+
+// }
 
 // function skip(message, serverQueue) {
 //     if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
@@ -409,12 +418,6 @@ async function execute(message, serverQueue) {
 //     serverQueue.songs = [];
 //     serverQueue.connection.dispatcher.end();
 // }
-
-    function play(connection, url) {
-        connection.play(ytdl(url), {
-            type: 'opus'
-        });
-    }
 
 // function play(guild, song) {
 //     const serverQueue = queue.get(guild.id);
