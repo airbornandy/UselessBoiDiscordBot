@@ -234,7 +234,7 @@ client.on   ('message', msg => {
                 break;
             case 'play':
                 const url = args[0];
-                let channel = msg.member.voiceChannel.connection
+                let channel = msg.member.voiceChannel
                 play(channel, url)
                 break;
             case 'help':
