@@ -327,9 +327,7 @@ client.on   ('message', msg => {
 });
 
 async function play(connection, url) {
-    connection.play(await ytdl(url), {
-        type: 'opus'
-    });
+    connection.playOpusStream(await ytdl(url));
 }
 
 // client.on('message', async message => {
