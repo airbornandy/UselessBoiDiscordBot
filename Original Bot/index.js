@@ -465,6 +465,10 @@ client.on('message', msg => {
             msg.channel.send('Did you mean: Vagina?');
         }
 
+        if (msg.guild.id === '501556469888581632') {
+            msg.react('file_cabinet')
+        }
+
         /* if(word.toLowerCase() === 'im') {
             if (word.toLowerCase() === 'ugly') {
                 msg.reply('Shush you beautiful hooman, you are beautiful');
