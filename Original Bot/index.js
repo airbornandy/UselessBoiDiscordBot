@@ -467,6 +467,8 @@ client.on('message', msg => {
 
         if (msg.guild.id === '501556469888581632') {
             msg.react('🗄️')
+            const bucketemoji = msg.guild.emojis.find(emoji => emoji.name === 'bucket');
+            msg.react(bucketemoji);
         }
 
         /* if(word.toLowerCase() === 'im') {
