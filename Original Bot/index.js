@@ -466,7 +466,7 @@ client.on('message', msg => {
         }
 
         if (msg.guild.id === '501556469888581632') {
-            msg.react('file_cabinet')
+            msg.react('🗄️')
         }
 
         /* if(word.toLowerCase() === 'im') {
