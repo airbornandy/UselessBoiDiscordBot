@@ -489,8 +489,10 @@ client.on('message', msg => {
         if (msg.content === "|reacttoggle") {
             if (reactions === true) {
                 reactions = false;
+                msg.channel.send("Reactions Disabled");
             } else {
                 reactions = true;
+                msg.channel.send("Reactions Enabled");
             }
         }
 
