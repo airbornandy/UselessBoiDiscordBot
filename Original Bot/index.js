@@ -8,6 +8,7 @@ let owners = config.ownerID;
 let yeetshire = config.mainGuildID;
 
 let raining = false;
+let reactions = true;
 
 
 client.once('ready', () => {
@@ -465,12 +466,6 @@ client.on('message', msg => {
             msg.channel.send('Did you mean: Vagina?');
         }
 
-        if (msg.guild.id === '501556469888581632') {
-            const bucketemoji = msg.guild.emojis.find(emoji => emoji.name === 'bucket');
-            msg.react('🗄️').then(() => msg.react(bucketemoji))
-            
-        }
-
         /* if(word.toLowerCase() === 'im') {
             if (word.toLowerCase() === 'ugly') {
                 msg.reply('Shush you beautiful hooman, you are beautiful');
@@ -487,6 +482,21 @@ client.on('message', msg => {
             return;
         } */
     });
+});
+
+client.on('message', msg => {
+    if (msg.guild.id === '501556469888581632') {
+        if (msg.content === "|reacttoggle") {
+            if (reactions === true) {
+                reactions = false;
+            } else {
+                reactions = true;
+            }
+        }
+
+        const bucketemoji = msg.guild.emojis.find(emoji => emoji.name === 'bucket');
+        msg.react('🗄️').then(() => msg.react(bucketemoji));
+    }
 });
 
 client.login(config.token);
