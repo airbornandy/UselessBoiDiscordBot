@@ -500,7 +500,7 @@ client.on('message', msg => {
             const bucketemoji = msg.guild.emojis.find(emoji => emoji.name === 'bucket');
             msg.react('🗄️').then(() => msg.react(bucketemoji));
         } else {
-            console.log(null)
+            console.log(null);
         }
     }
 });
