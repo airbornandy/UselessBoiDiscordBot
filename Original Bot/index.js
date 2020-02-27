@@ -8,7 +8,7 @@ let owners = config.ownerID;
 let yeetshire = config.mainGuildID;
 
 let raining = false;
-let reactions = true;
+let reactions = false;
 
 
 client.once('ready', () => {
