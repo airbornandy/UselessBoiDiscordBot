@@ -19,7 +19,7 @@ client.once('ready', () => {
             name: 'Alex Suffer',
             type: "WATCHING"
         }
-    });``
+    });
 });
 
 client.on   ('message', msg => {
