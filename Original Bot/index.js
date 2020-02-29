@@ -19,7 +19,7 @@ client.once('ready', () => {
             name: 'Alex Suffer',
             type: "WATCHING"
         }
-    });
+    });``
 });
 
 client.on   ('message', msg => {
@@ -306,29 +306,9 @@ client.on   ('message', msg => {
     }
 
     if (raining === true) {
-        if (msg.guild.id === '623614905118883880') {
+        if (msg.guild.id === '501556469888581632') {
             msg.channel.send(":droplet::droplet::droplet::droplet:\n  :droplet::droplet:　:droplet:\n    :droplet:　:droplet::droplet:\n      :droplet:　:droplet::droplet:")
         } else return;
-    }
-
-    if (msg.channel.id === '670515035252195358') {
-        if (msg.content != '...Maybe he\'s just a chill guy.') {
-            msg.delete();
-        }
-    }
-
-    if (msg.channel.id === '641879072665763850' || msg.channel.id === '652275250377129984') {
-        if (msg.content === 'same' || msg.content === 'me' || msg.content === 'oof') {
-            msg.delete();
-        }
-
-        let ventWords = msg.content.split(' ');
-        ventWords.forEach(word => {
-            if (word === 'oof') {
-                msg.delete();
-            }
-        })
-
     }
 });
 
@@ -506,4 +486,3 @@ client.on('message', msg => {
 });
 
 client.login(config.token);
-
