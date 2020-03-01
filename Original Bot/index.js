@@ -290,7 +290,7 @@ client.on   ('message', msg => {
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
 
                 msg.channel.send(miscHelp);
-                msg.channel.send(musicHelp);
+                //msg.channel.send(musicHelp);
                 msg.channel.send(userMentionsHelp);
                 break;
         }
