@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require("./config.json");
 const queue = new Map();
-const ytdl = require('ytdl-core-discord');
+const ytdl = require('ytdl-core');
 var prefix = config.prefix;
 let owners = config.ownerID;
 let yeetshire = config.mainGuildID;
@@ -132,10 +132,10 @@ client.on   ('message', msg => {
                 break;
             case 'avatar':
                 if (!msg.mentions.users.size) {
-                    return msg.channel.send(`Your avatar: ${msg.author.displayAvatarURL}`);
+                    return msg.channel.send(`Your avatar: ${msg.author.displayAvatarURL()}`);
                 }
                 const avatarList = msg.mentions.users.map(user => {
-                    return `${user.username}\'s avatar: ${user.displayAvatarURL}`;
+                    return `${user.username}\'s avatar: ${user.displayAvatarURL()}`;
                 });
                 msg.channel.send(avatarList);
                 break;
@@ -174,7 +174,7 @@ client.on   ('message', msg => {
                 msg.reply('Don\'t take it raw, always wrap it before you tap it')
                 break;
             case 'toeless':
-                const noToeSock = new Discord.RichEmbed()
+                const noToeSock = new Discord.MessageEmbed()
                     .setTitle('Toeless Socks')
                     .attachFiles(['./notoesock.jpg'])
                     .setImage('attachment://notoesock.jpg');
@@ -204,26 +204,26 @@ client.on   ('message', msg => {
             case 'electricchair':
                 msg.channel.send("Roberto Nevillis is an evil man and has caused academic stress and depression in many people. ELECTRIC CHAIR!!!!");
                 break;
-            // case 'randomping':
-            //     let pingGuild = msg.channel.guild;
-            //     let randomGuildMember = pingGuild.members.random();
-            //     let randomGuildChannel = randomGuildMember.guild.channels.random();
+            case 'randomping':
+                let pingGuild = msg.channel.guild;
+                let randomGuildMember = pingGuild.members.random();
+                let randomGuildChannel = randomGuildMember.guild.channels.random();
 
-            //     while (randomGuildMember.user.bot === true) {
-            //         randomGuildMember = pingGuild.members.random();
-            //     }
+                while (randomGuildMember.user.bot === true) {
+                    randomGuildMember = pingGuild.members.random();
+                }
 
-            //     while (randomGuildChannel.type === 'voice') {
-            //         randomGuildChannel = randomGuildMember.guild.channels.random();
-            //     }
+                while (randomGuildChannel.type === 'voice') {
+                    randomGuildChannel = randomGuildMember.guild.channels.random();
+                }
 
-            //     client.channels.get(randomGuildChannel.id).send(`<@${randomGuildMember.id}>`);
-            //     msg.channel.send(`Pinged ${randomGuildMember.user.username} in channel ${randomGuildChannel.name} on server ${pingGuild.name}`);
+                client.channels.get(randomGuildChannel.id).send(`<@${randomGuildMember.id}>`);
+                msg.channel.send(`Pinged ${randomGuildMember.user.username} in channel ${randomGuildChannel.name} on server ${pingGuild.name}`);
 
-            //     pingGuild = null;
-            //     randomGuildMember = null;
-            //     randomGuildChannel = null;
-            //     break;
+                pingGuild = null;
+                randomGuildMember = null;
+                randomGuildChannel = null;
+                break;
             case 'bitethumb':
                 const biteThumbUser = msg.mentions.users.first();
                 msg.reply(`bites their thumb at <@${biteThumbUser.id}>`);
@@ -233,20 +233,11 @@ client.on   ('message', msg => {
                 msg.delete();
                 msg.channel.send(`<@${ghostPingUser.id}>`).then(dmsg => { dmsg.delete(0); });
                 break;
-            case 'play':
-                const url = args[0];
-                let channel = msg.member.voiceChannel
-
-                channel.join();
-
-                play(channel, url);
-
-                break;
             case 'help':
-                const miscHelp = new Discord.RichEmbed()
+                const miscHelp = new Discord.MessageEmbed()
                     .setColor('#fce300')
                     .setTitle(`${client.user.username} Misc Commands`)
-                    .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+                    .setAuthor(`${client.user.username}`, `${client.user.avatarURL()}`)
 
                     .addField('hailrussia', 'Sends a communist flag made with emojis')
                     .addField('andioop', 'Uses emojis to spell "and i oop"')
@@ -263,27 +254,27 @@ client.on   ('message', msg => {
                     .addField('hellothere', 'General Kenobi')
                     .addField('toggledownfall', 'Toggles downfall (Yeetshire only)')
                     .addField('electricchair', 'Kill Roberto Nevillis')
-                    // .addField('randomping', 'Pings a random user in a random channel in the current guild you are in')
+                    .addField('randomping', 'Pings a random user in a random channel in the current guild you are in')
 
                     .setTimestamp()
-                    .setFooter('More commands coming soon', `${client.user.avatarURL}`);
+                    .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
 
-                const musicHelp = new Discord.RichEmbed()
-                    .setColor('#fce300')
-                    .setTitle(`${client.user.username} Music Commands`)
-                    .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+                // const musicHelp = new Discord.MessageEmbed()
+                //     .setColor('#fce300')
+                //     .setTitle(`${client.user.username} Music Commands`)
+                //     .setAuthor(`${client.user.username}`, `${client.user.avatarURL()}`)
 
-                    .addField('play {link}', 'Plays the audio from a youtube video')
-                    .addField('skip', 'Skips current playing audio')
-                    .addField('stop', 'Stops all audio and deletes queue')
+                //     .addField('play {link}', 'Plays the audio from a youtube video')
+                //     .addField('skip', 'Skips current playing audio')
+                //     .addField('stop', 'Stops all audio and deletes queue')
 
-                    .setTimestamp()
-                    .setFooter('More commands coming soon', `${client.user.avatarURL}`);
+                //     .setTimestamp()
+                //     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
 
-                const userMentionsHelp = new Discord.RichEmbed()
+                const userMentionsHelp = new Discord.MessageEmbed()
                     .setColor('#fce300')
                     .setTitle(`${client.user.username} User Mention Commands`)
-                    .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+                    .setAuthor(`${client.user.username}`, `${client.user.avatarURL()}`)
 
                     .addField('care {user)', 'Mention a user to care about them')
                     .addField('love {user}', 'Mention a user to love them')
@@ -296,7 +287,7 @@ client.on   ('message', msg => {
                     .addField('ghostping {user}', 'Mention a user to ghost ping them twice')
 
                     .setTimestamp()
-                    .setFooter('More commands coming soon', `${client.user.avatarURL}`);
+                    .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
 
                 msg.channel.send(miscHelp);
                 msg.channel.send(musicHelp);
@@ -312,117 +303,6 @@ client.on   ('message', msg => {
     }
 });
 
-async function play(connection, url) {
-    connection.playOpusStream(await ytdl(url));
-}
-
-// client.on('message', async message => {
-
-//     if (message.author.bot) return;
-//     if (!message.content.startsWith(prefix)) return;
-
-//     const serverQueue = queue.get(message.guild.id);
-
-//     if (message.content.startsWith(`${prefix}play`)) {
-//         execute(message, serverQueue);
-//         return;
-//     } else if (message.content.startsWith(`${prefix}skip`)) {
-//         skip(message, serverQueue);
-//         return;
-//     } else if (message.content.startsWith(`${prefix}stop`)) {
-//         stop(message, serverQueue);
-//         return;
-//     }
-// });
-
-// async function execute(message, serverQueue) {
-//     const args = message.content.split(' ');
-
-//     const voiceChannel = message.member.voiceChannel;
-//     if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
-//     const permissions = voiceChannel.permissionsFor(message.client.user);
-//     if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
-//         return message.channel.send('I need the permissions to join and speak in your voice channel!');
-//     }
-
-//     const songInfo = await ytdl.getInfo(args[1]);
-//     const song = {
-//         title: songInfo.title,
-//         url: songInfo.video_url,
-//         id: songInfo.video_id,
-//     };
-
-//     if (!serverQueue) {
-//         const queueContruct = {
-//             textChannel: message.channel,
-//             voiceChannel: voiceChannel,
-//             connection: null,
-//             songs: [],
-//             volume: 5,
-//             playing: true,
-//         };
-
-//         queue.set(message.guild.id, queueContruct);
-
-//         queueContruct.songs.push(song);
-
-//         try {
-//             var connection = await voiceChannel.join();
-//             queueContruct.connection = connection;
-//             play(message.guild, queueContruct.songs[0]);
-//         } catch (err) {
-//             console.log(err);
-//             queue.delete(message.guild.id);
-//             return message.channel.send(err);
-//         }
-//     } else {
-//         serverQueue.songs.push(song);
-//         console.log(serverQueue.songs);
-//         const songAddedEmbed = new Discord.RichEmbed()
-//             .setColor('#fce300')
-//             .setTitle(`Added ${song.title} to queue!`)
-//             .setURL(song.url)
-//             .setAuthor('Useless Boi', 'https://cdn.discordapp.com/avatars/629466801289429012/83da73fef809810b925d653d9d5fd6d4.png?size=2048')
-//             .setThumbnail(song.thumbnail);
-
-
-//         return message.channel.send(songAddedEmbed);
-//     }
-
-// }
-
-// function skip(message, serverQueue) {
-//     if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
-//     if (!serverQueue) return message.channel.send('There is no song that I could skip!');
-//     serverQueue.connection.dispatcher.end();
-// }
-
-// function stop(message, serverQueue) {
-//     if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
-//     serverQueue.songs = [];
-//     serverQueue.connection.dispatcher.end();
-// }
-
-// function play(guild, song) {
-//     const serverQueue = queue.get(guild.id);
-
-//     if (!song) {
-//         serverQueue.voiceChannel.leave()
-//         queue.delete(guild.id);
-//         return;
-//     }
-
-//     const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
-//         .on('end', () => {
-//             console.log('Music ended!');
-//             serverQueue.songs.shift();
-//             play(guild, serverQueue.songs[0]);
-//         })
-//         .on('error', error => {
-//             console.error(error);
-//         });
-//     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-// }
 
 client.on('message', msg => {
     if (msg.author.bot) return;
