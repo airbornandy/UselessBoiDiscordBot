@@ -1,11 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require("./config.json");
-const queue = new Map();
-const ytdl = require('ytdl-core');
 var prefix = config.prefix;
-let owners = config.ownerID;
-let yeetshire = config.mainGuildID;
+// const queue = new Map();
+const ytdl = require('ytdl-core');
 
 let raining = false;
 let reactions = false;
@@ -56,11 +54,6 @@ client.on   ('message', msg => {
                 msg.delete();
                 msg.channel.send('Ben Shapiro TRIGGERS Liberal by SENDING them to NAZI DEATH CAMPS using pure CONSERVATIVE LOGIC and REASONING and then ANGERS SJW by GOING on a RAMPAGE literally RAPING and MURDERING every single MINORITY within a 200 MILE RADIUS then TROLLS Libtard with TRUMP DERANGEMENT SYNDROME by licking Donald Trumps MICROPENIS of all the DRIED CUM from the CONCEPTION of Barron Trump and he ANGERS democrat by FEEDING upon the FLESH of ABORTED FETUSES and the BLOOD of EVERY single LIBTARD to literally BECOME a GOD AMONG MEN which TROLLS idiot COMMIES by OPENING the seals of HELL and CAUSING the APOCALYPSE in which the DEVIL RAPES CHILDREN and TEARS OFF the heads of Liberal TODDLERS and LITERALLY setting WOMEN’s RIGHTS a THOUSAND YEARS and also Ben TRIGGERS the SOCIALISTS by RAPING the UNDEAD CORPSE of LEON TROTSKY and JOSEPH STALIN and he PISSES OFF the LEFTISTS by ESTABLISHING a NEW WORLD ORDER in which he is the SUPREME GOD EMPEROR OF ALL OF THE AMERICAS, CHINA, EUROPE, BRITAIN, TAIWAN, and THAT RANDOM ISLAND IN THE MIDDLE OF THE PACIFIC OCEAN and MURDERS all POLITICAL DISSIDENTS within the government and then he LITERALLY summons CTHULHU and have home and the DEVIL FUCK HIM IN THE ASS while he CUMS all OVER the BOTTLE of LIBERAL TEARS and then he PRANKS Chink Ugayer by IMITATING him and literally dying from the ANAL WOUNDS from Literally being FUCKED IN THE ASS by SATAN and CTHULHU and then ENRAGES the COMMIES by RAPING GOD and BECOMING the NEW ABSOLUTE RULER OF THE UNIVERSE!!!!! (LIBERALS TROLLED) (NOT CLICKBAIT) (SJWs and FEMINISTS OWNED)');
                 break;
-            case 'ping':
-                msg.channel.send('Pong!')
-                msg.delete();
-                msg.channel.send(`API Latency is ${Math.round(client.ping)}ms`);
-                break;
             case 'vibecheck':
                 let vibe = Math.random() * 100;
                 vibe = Math.max(Math.round(vibe * 10) / 10, 2.8).toFixed(1);
@@ -87,9 +80,6 @@ client.on   ('message', msg => {
                 break;
             case 'h':
                 msg.channel.send('hee hee haw haw')
-                break;
-            case 'wsc':
-                msg.channel.send('Wanna Sprite Cranberry? https://www.sprite.com/?utm_id=260048664-124136793&utm_source=3118850&utm_medium=260048664&utm_campaign=23420548');
                 break;
             case 'say':
                 const sayMessage = args.join(" ");
@@ -245,7 +235,6 @@ client.on   ('message', msg => {
                     .addField('benshapiro', 'Try it?')
                     .addField('vibecheck', 'Checks your vibes')
                     .addField('h', 'Replys with "hee hee haw haw"')
-                    .addField('wsc', 'Wanna Sprite Cranberry?')
                     .addField('say {message}', 'Says the specified message')
                     .addField('ducks', 'Replys with random duck facts')
                     .addField('howcute', 'Rates how cute you are on a scale of 100-100')
@@ -290,7 +279,7 @@ client.on   ('message', msg => {
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
 
                 msg.channel.send(miscHelp);
-                //msg.channel.send(musicHelp);
+                // msg.channel.send(musicHelp);
                 msg.channel.send(userMentionsHelp);
                 break;
         }
@@ -325,22 +314,6 @@ client.on('message', msg => {
         if (word.toLowerCase() === 'pussy') {
             msg.channel.send('Did you mean: Vagina?');
         }
-
-        /* if(word.toLowerCase() === 'im') {
-            if (word.toLowerCase() === 'ugly') {
-                msg.reply('Shush you beautiful hooman, you are beautiful');
-            } else {
-                return;
-            }
-        } else if(word.toLowerCase() === "i'm") {
-            if (word.toLowerCase() === 'ugly') {
-                msg.reply('Shush you beautiful hooman, you are beautiful');
-            } else {
-                return;
-            }
-        } else {
-            return;
-        } */
     });
 });
 
