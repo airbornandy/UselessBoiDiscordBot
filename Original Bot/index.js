@@ -153,7 +153,7 @@ client.on   ('message', msg => {
                     return;
                 }
 
-                msg.reply('Given a :cookie: to ' + cookieUser);
+                msg.reply('Given a :cookie: to ' + '<@' + cookieUser.id + '>');
 
                 break;
             case 'howcute':
