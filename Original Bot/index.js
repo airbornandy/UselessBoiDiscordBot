@@ -222,11 +222,15 @@ client.on   ('message', msg => {
                 msg.delete();
                 msg.channel.send(`<@${ghostPingUser.id}>`).then(dmsg => { dmsg.delete(0); });
                 break;
+            case 'puretest':
+                msg.channel.send('http://ricepuritytest.com/');
+                break;
             case 'help':
                 const miscHelp = new Discord.MessageEmbed()
                     .setColor('#fce300')
                     .setTitle(`${client.user.username} Misc Commands`)
                     .setAuthor(`${client.user.username}`, `${client.user.avatarURL()}`)
+                    .setDescription(`Current Prefix: ${prefix}`)
 
                     .addField('hailrussia', 'Sends a communist flag made with emojis')
                     .addField('andioop', 'Uses emojis to spell "and i oop"')
@@ -243,6 +247,7 @@ client.on   ('message', msg => {
                     .addField('toggledownfall', 'Toggles downfall (Yeetshire only)')
                     .addField('electricchair', 'Kill Roberto Nevillis')
                     .addField('randomping', 'Pings a random user in a random channel in the current guild you are in')
+                    .addField('puretest', 'Sends a link for the rice purity test')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
@@ -251,6 +256,7 @@ client.on   ('message', msg => {
                 //     .setColor('#fce300')
                 //     .setTitle(`${client.user.username} Music Commands`)
                 //     .setAuthor(`${client.user.username}`, `${client.user.avatarURL()}`)
+                //     .setDescription(`Current Prefix: ${prefix}`)
 
                 //     .addField('play {link}', 'Plays the audio from a youtube video')
                 //     .addField('skip', 'Skips current playing audio')
@@ -263,6 +269,7 @@ client.on   ('message', msg => {
                     .setColor('#fce300')
                     .setTitle(`${client.user.username} User Mention Commands`)
                     .setAuthor(`${client.user.username}`, `${client.user.avatarURL()}`)
+                    .setDescription(`Current Prefix: ${prefix}`)
 
                     .addField('care {user)', 'Mention a user to care about them')
                     .addField('love {user}', 'Mention a user to love them')
