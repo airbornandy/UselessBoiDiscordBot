@@ -4,6 +4,7 @@ const config = require("./config.json");
 var prefix = config.prefix;
 // const queue = new Map();
 const ytdl = require('ytdl-core');
+const status = require('./status.json');
 
 let raining = false;
 let reactions = false;
@@ -12,12 +13,7 @@ let reactions = false;
 client.once('ready', () => {
     console.log('Ready!');
     client.user.setStatus('available')
-    client.user.setPresence({
-        game: {
-            name: 'Alex Suffer',
-            type: "WATCHING"
-        }
-    });
+    client.user.setPresence(status);
 });
 
 client.on   ('message', msg => {
