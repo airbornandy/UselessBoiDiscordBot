@@ -153,7 +153,8 @@ client.on   ('message', msg => {
 
                 break;
             case 'howcute':
-                msg.reply(`Your cuteness rating is 100`);
+                const cuteUser = msg.mentions.users.first();
+                msg.reply(`<@${cuteUser.id}>'s cuteness rating is 100`);
                 break;
             case 'raw':
                 msg.reply('Don\'t take it raw, always wrap it before you tap it')
