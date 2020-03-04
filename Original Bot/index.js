@@ -208,10 +208,6 @@ client.on   ('message', msg => {
 
                 client.channels.get(randomGuildChannel.id).send(`<@${randomGuildMember.id}>`);
                 msg.channel.send(`Pinged ${randomGuildMember.user.username} in channel ${randomGuildChannel.name} on server ${pingGuild.name}`);
-
-                pingGuild = null;
-                randomGuildMember = null;
-                randomGuildChannel = null;
                 break;
             case 'bitethumb':
                 const biteThumbUser = msg.mentions.users.first();
@@ -311,14 +307,6 @@ client.on('message', msg => {
 
         if (word.toLowerCase() === 'cute') {
             msg.reply('Oh cute? why yes you are');
-        }
-
-        if (word.toLowerCase() === '私は醜いです' || word.toLowerCase() === '私はぶす') {
-            msg.reply('shush beautiful hooman');
-        }
-
-        if (word.toLowerCase() === 'pussy') {
-            msg.channel.send('Did you mean: Vagina?');
         }
     });
 });
