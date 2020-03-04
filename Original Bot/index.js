@@ -233,7 +233,6 @@ client.on   ('message', msg => {
                     .addField('h', 'Replys with "hee hee haw haw"')
                     .addField('say {message}', 'Says the specified message')
                     // .addField('ducks', 'Replys with random duck facts')
-                    .addField('howcute', 'Rates how cute you are on a scale of 100-100')
                     .addField('raw', 'Some good advice')
                     .addField('toeless', 'Sends a photo of toeless socks')
                     .addField('hellothere', 'General Kenobi')
@@ -273,6 +272,7 @@ client.on   ('message', msg => {
                     .addField('textuser {user} {message}', 'Sends the specified member a dm with the specified message')
                     .addField('bitethumb {user}', 'Bite your thumb at the mentioned user')
                     .addField('ghostping {user}', 'Mention a user to ghost ping them twice')
+                    .addField('howcute {user}', 'Rates how cute you are on a scale of 100-100')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
