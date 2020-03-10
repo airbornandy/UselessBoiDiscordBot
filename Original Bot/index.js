@@ -133,14 +133,13 @@ client.on   ('message', msg => {
                 textUser.send(textMessage);
                 client.channels.cache.get('684638934348726303').send(`Message "${textMessage}" sent to <@${textUser.id}>`)
                 break;
-            // case 'ducks':
-            //     msg.channel.send("Duck rape is a major issue");
-            //     msg.channel.send("Ducks have maze vaginas");
-            //     msg.channel.send("Ducks have corkscrew dicks");
-            //     msg.channel.send('Ducks eat eachother when they\'re bored');
-            //     msg.channel.send('Duck Murder!!!!!!');
-            //     msg.channel.send('Ask <@557226379456806916> for more duck facts');
-            //     break;
+            case 'ducks':
+                msg.channel.send("Duck rape is a major issue");
+                msg.channel.send("Ducks have maze vaginas");
+                msg.channel.send("Ducks have corkscrew dicks");
+                msg.channel.send('Ducks eat eachother when they\'re bored');
+                msg.channel.send('Duck Murder!!!!!!');
+                break;
             case 'cookie':
                 const cookieUser = msg.mentions.users.first();
 
@@ -237,7 +236,7 @@ client.on   ('message', msg => {
                     .addField('vibecheck', 'Checks your vibes')
                     .addField('h', 'Replys with "hee hee haw haw"')
                     .addField('say {message}', 'Says the specified message')
-                    // .addField('ducks', 'Replys with random duck facts')
+                    .addField('ducks', 'Replys with random duck facts')
                     .addField('raw', 'Some good advice')
                     .addField('toeless', 'Sends a photo of toeless socks')
                     .addField('hellothere', 'General Kenobi')
