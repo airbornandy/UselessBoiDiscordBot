@@ -1,6 +1,6 @@
 {
-        "game": {
-            "name": "Alex Suffer",
-            "type": "WATCHING"
-    }
+    "activity": {
+        "name": "With Alex's Emotions"
+    },
+    "status": "online"
 }
