@@ -29,7 +29,7 @@ client.on   ('message', msg => {
     if (msg.content.slice(0, 1) === prefix) {
         switch (cmd) {
             case 'guilds':
-                client.guilds.forEach(guild => {
+                client.guilds.cache.forEach(guild => {
                     msg.channel.send(guild.name);
                 });
                 break;
