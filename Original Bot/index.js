@@ -9,7 +9,6 @@ const status = require('./status.json');
 let raining = false;
 let reactions = false;
 
-
 client.once('ready', () => {
     console.log('Ready!');
     client.user.setStatus('available')
