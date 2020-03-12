@@ -15,7 +15,7 @@ client.once('ready', () => {
     client.user.setPresence(status);
 });
 
-client.on   ('message', msg => {
+client.on('message', msg => {
     const args = msg.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
 
