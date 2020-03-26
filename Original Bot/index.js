@@ -28,7 +28,7 @@ client.on('message', msg => {
 
     if (msg.content.slice(0, 1) === prefix) {
         switch (cmd) {
-            case 'guilds':
+            case 'guilds':  
                 client.guilds.cache.forEach(guild => {
                     msg.channel.send(guild.name);
                 });
