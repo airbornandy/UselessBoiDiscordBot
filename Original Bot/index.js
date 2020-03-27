@@ -230,6 +230,11 @@ client.on('message', msg => {
                 console.log(bucketImg);
                 msg.channel.send(bucketImgEmbed);
                 break;
+            case 'egg':
+                msg.channel.send('<@493290637785825280>').then(m => {
+                    m.react('🥚');
+                })
+                break;
             case 'help':
                 const miscHelp = new Discord.MessageEmbed()
                     .setColor('#fce300')
@@ -253,6 +258,7 @@ client.on('message', msg => {
                     .addField('randomping', 'Pings a random user in a random channel in the current guild you are in')
                     .addField('puretest', 'Sends a link for the rice purity test')
                     .addField('bucket', 'Sends a random bucket image')
+                    .addField('Pings Aeon')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
