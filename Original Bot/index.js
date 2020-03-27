@@ -221,8 +221,14 @@ client.on('message', msg => {
                 msg.channel.send(":white_large_square::white_large_square::white_large_square::white_large_square::red_square::red_square::blue_square::red_square::red_square::red_square::blue_square::white_large_square::white_large_square::white_large_square::white_large_square::white_large_square:\n:white_large_square::white_large_square::white_large_square::red_square::red_square::red_square::blue_square::red_square::red_square::blue_square::red_square::red_square::red_square::white_large_square::white_large_square::white_large_square:\n:white_large_square::white_large_square::red_square::red_square::red_square::red_square::blue_square::blue_square::blue_square::blue_square::red_square::red_square::red_square::red_square::white_large_square::white_large_square:\n:white_large_square::white_large_square::orange_square::orange_square::red_square::blue_square::yellow_square::blue_square::blue_square::yellow_square::blue_square::red_square::orange_square::orange_square::white_large_square::white_large_square:\n:white_large_square::white_large_square::orange_square::orange_square::orange_square::blue_square::blue_square::blue_square::blue_square::blue_square::blue_square::orange_square::orange_square::orange_square::white_large_square::white_large_square:\n:white_large_square::white_large_square::orange_square::orange_square::blue_square::blue_square::blue_square::blue_square::blue_square::blue_square::blue_square::blue_square::orange_square::orange_square::white_large_square::white_large_square:");
                 msg.channel.send(":white_large_square::white_large_square::white_large_square::white_large_square::blue_square::blue_square::blue_square::white_large_square::white_large_square::blue_square::blue_square::blue_square::white_large_square::white_large_square::white_large_square::white_large_square:\n:white_large_square::white_large_square::white_large_square::brown_square::brown_square::brown_square::brown_square::white_large_square::white_large_square::brown_square::brown_square::brown_square::brown_square::white_large_square::white_large_square::white_large_square:\n:white_large_square::white_large_square::brown_square::brown_square::brown_square::brown_square::brown_square::white_large_square::white_large_square::brown_square::brown_square::brown_square::brown_square::brown_square::white_large_square::white_large_square:");
                 break;
-            case 'bitch':
-                msg.channel.send(`Did you mean: <@413728456942288896>`);
+            case 'bucket':
+                let bucketImg = Math.floor(Math.random() * 19) + 1;
+                const bucketImgEmbed = new Discord.MessageEmbed()
+                    .setTitle('Random Bucket')
+                    .attachFiles([`./buckets/bucket${bucketImg}.jpg`])
+                    .setImage(`attachment://bucket${bucketImg}.jpg`);
+                console.log(bucketImg);
+                msg.channel.send(bucketImgEmbed);
                 break;
             case 'help':
                 const miscHelp = new Discord.MessageEmbed()
@@ -246,6 +252,7 @@ client.on('message', msg => {
                     .addField('electricchair', 'Kill Roberto Nevillis')
                     .addField('randomping', 'Pings a random user in a random channel in the current guild you are in')
                     .addField('puretest', 'Sends a link for the rice purity test')
+                    .addField('bucket', 'Sends a random bucket image')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
