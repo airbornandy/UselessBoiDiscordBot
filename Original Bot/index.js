@@ -258,7 +258,7 @@ client.on('message', msg => {
                     .addField('randomping', 'Pings a random user in a random channel in the current guild you are in')
                     .addField('puretest', 'Sends a link for the rice purity test')
                     .addField('bucket', 'Sends a random bucket image')
-                    .addField('Pings Aeon')
+                    .addField('egg', 'Pings Aeon')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
