@@ -188,30 +188,9 @@ client.on('message', msg => {
             case 'electricchair':
                 msg.channel.send("Roberto Nevillis is an evil man and has caused academic stress and depression in many people. ELECTRIC CHAIR!!!!");
                 break;
-            case 'randomping':
-                let pingGuild = msg.channel.guild;
-                let randomGuildMember = pingGuild.members.random();
-                let randomGuildChannel = randomGuildMember.guild.channels.random();
-
-                while (randomGuildMember.user.bot === true) {
-                    randomGuildMember = pingGuild.members.random();
-                }
-
-                while (randomGuildChannel.type === 'voice') {
-                    randomGuildChannel = randomGuildMember.guild.channels.random();
-                }
-
-                client.channels.get(randomGuildChannel.id).send(`<@${randomGuildMember.id}>`);
-                msg.channel.send(`Pinged ${randomGuildMember.user.username} in channel ${randomGuildChannel.name} on server ${pingGuild.name}`);
-                break;
             case 'bitethumb':
                 const biteThumbUser = msg.mentions.users.first();
                 msg.reply(`bites their thumb at <@${biteThumbUser.id}>`);
-                break;
-            case 'ghostping':
-                const ghostPingUser = msg.mentions.users.first();
-                msg.delete();
-                msg.channel.send(`<@${ghostPingUser.id}>`).then(dmsg => { dmsg.delete(0); });
                 break;
             case 'puretest':
                 msg.channel.send('http://ricepuritytest.com/');
@@ -255,7 +234,6 @@ client.on('message', msg => {
                     .addField('hellothere', 'General Kenobi')
                     .addField('toggledownfall', 'Toggles downfall (Yeetshire only)')
                     .addField('electricchair', 'Kill Roberto Nevillis')
-                    .addField('randomping', 'Pings a random user in a random channel in the current guild you are in')
                     .addField('puretest', 'Sends a link for the rice purity test')
                     .addField('bucket', 'Sends a random bucket image')
                     .addField('egg', 'Pings Aeon')
@@ -290,7 +268,6 @@ client.on('message', msg => {
                     .addField('stab {user}', 'Tag a user to stab them')
                     .addField('textuser {user} {message}', 'Sends the specified member a dm with the specified message')
                     .addField('bitethumb {user}', 'Bite your thumb at the mentioned user')
-                    .addField('ghostping {user}', 'Mention a user to ghost ping them twice')
                     .addField('howcute {user}', 'Rates how cute you are on a scale of 100-100')
 
                     .setTimestamp()
