@@ -151,8 +151,14 @@ client.on('message', msg => {
 
                 break;
             case 'howcute':
-                const cuteUser = msg.mentions.users.first();
-                msg.reply(`<@${cuteUser.id}>'s cuteness rating is 100`);
+                if (!msg.mentions.users.size) {
+                    msg.reply(`Your cutness rating is 100`)
+                } else {
+                    let cuteUser = msg.mentions.users.first();
+                    if (msg.author === cuteUser) return msg.reply("You do not have mention yourself to howcute youself");
+
+                    msg.reply(`<@${cuteUser.id}>'s cuteness rating is 100`)
+                }
                 break;
             case 'raw':
                 msg.reply('Don\'t take it raw, always wrap it before you tap it')
@@ -213,6 +219,9 @@ client.on('message', msg => {
                 msg.channel.send('<@493290637785825280>').then(m => {
                     m.react('🥚');
                 })
+                break;
+            case '':
+                msg.channel.send('');
                 break;
             case 'help':
                 const miscHelp = new Discord.MessageEmbed()
