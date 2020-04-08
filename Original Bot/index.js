@@ -220,8 +220,37 @@ client.on('message', msg => {
                     m.react('🥚');
                 })
                 break;
-            case '':
-                msg.channel.send('');
+            case 'coinflip':
+                if (!args[0]) {
+                    let coinflip = Math.random() * 6;
+                    // coinflip = Math.max(Math.round(coinflip * 10) / 10, 2.8).toFixed(3);
+
+                    if (coinflip <= 2.999) {
+                        msg.reply("HEADS!")
+                    } else if (coinflip >= 3.001) {
+                        msg.reply("TAILS!")
+                    } else if (coinflip === 3.000) {
+                        msg.reply("You won't believe this. It landed on it's side.")
+                    }
+                    console.log(coinflip);
+                } else {
+                    let heads = 0;
+                    let tails = 0;
+                    let side = 0;
+                    
+                    for (let i = 0; i < args[0]; i++) {
+                        let coinflip = Math.random() * 6;
+                        
+                        if (coinflip <= 2.999) {
+                            heads += 1;
+                        } else if (coinflip >= 3.001) {
+                            tails += 1;
+                        } else if (coinflip === 3.000) {
+                            side += 1;
+                        }
+                    }
+                    msg.reply(`The coin landed on heads ${heads} times, tails ${tails} times, and it landed on its side ${side} times.`)
+                }
                 break;
             case 'help':
                 const miscHelp = new Discord.MessageEmbed()
@@ -246,6 +275,7 @@ client.on('message', msg => {
                     .addField('puretest', 'Sends a link for the rice purity test')
                     .addField('bucket', 'Sends a random bucket image')
                     .addField('egg', 'Pings Aeon')
+                    .addField('coinflip [number of flips]', 'Flips a coin the specified amount of times. Number is optional')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
