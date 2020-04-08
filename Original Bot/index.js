@@ -214,7 +214,7 @@ client.on('message', msg => {
                     .setImage(`attachment://bucket${bucketImg}.jpg`);
                 console.log(bucketImg);
                 msg.channel.send(bucketImgEmbed).then(b => {
-                    const bucketemoji = msg.guild.emojis.find(emoji => emoji.name === 'bucket');
+                    const bucketemoji = msg.guild.emojis.cache.find(emoji => emoji.name === 'bucket');
                     b.react(bucketemoji);
                 });
                 break;
@@ -359,7 +359,7 @@ client.on('message', msg => {
         }
 
         if (reactions) {
-            const bucketemoji = msg.guild.emojis.find(emoji => emoji.name === 'bucket');
+            const bucketemoji = msg.guild.emojis.cache.find(emoji => emoji.name === 'bucket');
             msg.react('🗄️').then(() => msg.react(bucketemoji));
         } else return;
     }
