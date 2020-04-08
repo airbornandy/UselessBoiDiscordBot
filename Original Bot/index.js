@@ -213,7 +213,10 @@ client.on('message', msg => {
                     .attachFiles([`./buckets/bucket${bucketImg}.jpg`])
                     .setImage(`attachment://bucket${bucketImg}.jpg`);
                 console.log(bucketImg);
-                msg.channel.send(bucketImgEmbed);
+                msg.channel.send(bucketImgEmbed).then(b => {
+                    const bucketemoji = msg.guild.emojis.find(emoji => emoji.name === 'bucket');
+                    b.react(bucketemoji);
+                });
                 break;
             case 'egg':
                 msg.channel.send('<@493290637785825280>').then(m => {
