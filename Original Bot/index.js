@@ -136,7 +136,7 @@ client.on('message', msg => {
                 msg.channel.send("Duck rape is a major issue");
                 msg.channel.send("Ducks have maze vaginas");
                 msg.channel.send("Ducks have corkscrew dicks");
-                msg.channel.send('Ducks eat eachother when they\'re bored');
+                msg.channel.send('Ducks eat eachother when they \'re bored');
                 msg.channel.send('Duck Murder!!!!!!');
                 break;
             case 'cookie':
