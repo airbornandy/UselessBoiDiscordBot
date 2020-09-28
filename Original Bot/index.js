@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const config = require("./config.json");
 var prefix = config.prefix;
 // const queue = new Map();
-const ytdl = require('ytdl-core');
+// const ytdl = require('ytdl-core');
 const status = require('./status.json');
 
 let raining = false;
@@ -28,7 +28,7 @@ client.on('message', msg => {
 
     if (msg.content.slice(0, 1) === prefix) {
         switch (cmd) {
-            case 'guilds':  
+            case 'guilds':
                 client.guilds.cache.forEach(guild => {
                     msg.channel.send(guild.name);
                 });
@@ -78,7 +78,7 @@ client.on('message', msg => {
                 break;
             case 'say':
                 const sayMessage = args.join(" ");
-                msg.delete().catch(O_o => { });
+                msg.delete().catch(O_o => {});
                 msg.channel.send(sayMessage);
                 break;
             case 'howgay':
@@ -240,10 +240,10 @@ client.on('message', msg => {
                     let heads = 0;
                     let tails = 0;
                     let side = 0;
-                    
+
                     for (let i = 0; i < args[0]; i++) {
                         let coinflip = Math.random() * 6;
-                        
+
                         if (coinflip <= 2.999) {
                             heads += 1;
                         } else if (coinflip >= 3.001) {
