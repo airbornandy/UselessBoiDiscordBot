@@ -98,6 +98,23 @@ client.on('message', msg => {
                     msg.reply(`<@${gayUser.id}> is ${gayness}% gay`)
                 }
                 break;
+            case 'clowncheck':
+                let clowness = Math.random() * 100;
+                clowness = Math.max(Math.round(clowness * 10) / 10, 2.8).toFixed(1);
+
+                if (!msg.mentions.users.size) {
+                    msg.reply(`You are ${clowness}% clown`)
+                } else {
+                    let clownUser = msg.mentions.users.first();
+                    if (msg.author === clownUser) return msg.reply("You do not have mention yourself to clowncheck youself");
+
+                    if (clownUser.id === `463498581580578826`) {
+                        clowness = 100
+                    }
+
+                    msg.reply(`<@${clownUser.id}> is ${clowness}% clown`)
+                }
+                break;
             case 'stab':
                 const stabUser = msg.mentions.users.first();
                 if (stabUser) {
@@ -267,6 +284,7 @@ client.on('message', msg => {
                     .addField('sksk', 'Uses emojis to spell "sksksksksksksk"')
                     .addField('benshapiro', 'Try it?')
                     .addField('vibecheck', 'Checks your vibes')
+                    .addField('clowncheck', 'Clown Check')
                     .addField('h', 'Replys with "hee hee haw haw"')
                     .addField('say {message}', 'Says the specified message')
                     .addField('ducks', 'Replys with random duck facts')
