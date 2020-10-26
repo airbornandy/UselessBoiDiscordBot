@@ -349,8 +349,12 @@ client.on('message', msg => {
     }
 
     if (msg.channel.id === '770065026609709086') {
-        if (msg.cleanContent.toLowerCase() != 'ooga' || msg.cleanContent.toLowerCase() != 'booga' || msg.cleanContent.toLowerCase() != 'ooga booga') {
-            msg.delete();
+        if (msg.content != 'ooga') {
+            if (msg.content != 'booga') {
+                if (msg.content != 'ooga booga') {
+                    msg.delete();
+                } 
+            }
         }
     }
 });
