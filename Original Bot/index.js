@@ -8,6 +8,7 @@ const status = require('./status.json');
 
 let raining = false;
 let reactions = false;
+let rainChannel;
 
 client.once('ready', () => {
     console.log('Ready!');
@@ -205,6 +206,7 @@ client.on('message', msg => {
                     msg.channel.send("Rain Disabled")
                 } else {
                     raining = true;
+                    rainChannel = msg.channel.id;
                     msg.channel.send("Rain Enabled")
                 }
                 break;
@@ -341,9 +343,15 @@ client.on('message', msg => {
     }
 
     if (raining === true) {
-        if (msg.guild.id === '501556469888581632') {
+        if (msg.channel.id === rainChannel) {
             msg.channel.send(":droplet::droplet::droplet::droplet:\n  :droplet::droplet:　:droplet:\n    :droplet:　:droplet::droplet:\n      :droplet:　:droplet::droplet:")
         } else return;
+    }
+
+    if (msg.channel.id === '770065026609709086') {
+        if (msg.content.toLowerCase() !== 'ooga' || msg.content.toLowerCase() !== 'booga' || msg.content.toLowerCase() !== 'ooga booga') {
+            msg.delete();
+        }
     }
 });
 
