@@ -349,7 +349,7 @@ client.on('message', msg => {
     }
 
     if (msg.channel.id === '770065026609709086') {
-        if (msg.content.toLowerCase() !== 'ooga' || msg.content.toLowerCase() !== 'booga' || msg.content.toLowerCase() !== 'ooga booga') {
+        if (msg.cleanContent.toLowerCase() != 'ooga' || msg.cleanContent.toLowerCase() != 'booga' || msg.cleanContent.toLowerCase() != 'ooga booga') {
             msg.delete();
         }
     }
