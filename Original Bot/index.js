@@ -278,7 +278,7 @@ client.on('message', msg => {
                 break;
             case 'oracle':
                 let oracleNumber = Math.floor(Math.random() * 20);
-                msg.reply(oracleNumber[oracleNumber]);
+                msg.reply(oracleResponses[oracleNumber]);
                 break;
             case 'help':
                 const miscHelp = new Discord.MessageEmbed()
