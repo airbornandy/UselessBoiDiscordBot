@@ -6,6 +6,8 @@ var prefix = config.prefix;
 // const ytdl = require('ytdl-core');
 const status = require('./status.json');
 
+let oracleResponses = ['As I see it, yes.', 'Ask again later.', 'Better not tell you now.', 'Cannot predict now.', 'Concentrate and ask again.', 'Don’t count on it.', 'It is certain.', 'It is decidedly so.', 'Most likely.', 'My reply is no.', 'My sources say no.', 'Outlook not so good.', 'Outlook good.', 'Reply hazy, try again.', 'Signs point to yes.', 'Very doubtful.', 'Without a doubt.', 'Yes.', 'Yes – definitely.', 'You may rely on it.']
+
 let raining = false;
 let reactions = false;
 let rainChannel;
@@ -273,6 +275,10 @@ client.on('message', msg => {
                     }
                     msg.reply(`The coin landed on heads ${heads} times, tails ${tails} times, and it landed on its side ${side} times.`)
                 }
+                break;
+            case 'oracle':
+                let oracleNumber = Math.floor(Math.random() * 20);
+                msg.reply(oracleNumber[oracleNumber]);
                 break;
             case 'help':
                 const miscHelp = new Discord.MessageEmbed()
