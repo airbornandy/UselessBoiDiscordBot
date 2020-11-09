@@ -82,7 +82,7 @@ client.on('message', msg => {
                 break;
             case 'say':
                 const sayMessage = args.join(" ");
-                msg.delete().catch(O_o => {});
+                msg.delete().catch(O_o => { });
                 msg.channel.send(sayMessage);
                 break;
             case 'howgay':
@@ -303,6 +303,16 @@ client.on('message', msg => {
                         msg.channel.send(frog);
                     });
                 break;
+            case 'subreddit':
+                rpup(args[0])
+                    .then(url => {
+                        const image = new Discord.MessageEmbed()
+                            .setTitle(`Random image from r/${args[0]}`)
+                            .setImage(url);
+                        
+                        msg.channel.send(image);
+                    });
+                break;
             case 'help':
                 const miscHelp = new Discord.MessageEmbed()
                     .setColor('#fce300')
@@ -329,6 +339,8 @@ client.on('message', msg => {
                     .addField('egg', 'Pings Aeon')
                     .addField('coinflip [number of flips]', 'Flips a coin the specified amount of times. Number is optional')
                     .addField('oracle [question]', 'Ask The Oracle A Question')
+                    .addField('frog', 'Random image from r/frogs')
+                    .addField('subreddit {subreddit}', 'Pulls a random image from the specified subreddit')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
