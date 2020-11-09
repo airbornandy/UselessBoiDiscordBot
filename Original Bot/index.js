@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require("./config.json");
+const rpup = require('random-puppy');
 var prefix = config.prefix;
 // const queue = new Map();
 // const ytdl = require('ytdl-core');
@@ -280,6 +281,28 @@ client.on('message', msg => {
                 let oracleNumber = Math.floor(Math.random() * 20);
                 msg.reply(oracleResponses[oracleNumber]);
                 break;
+            case 'covidtest':
+                let covid = Math.random() * 100;
+                covid = Math.max(Math.round(covid * 10) / 10, 2.8).toFixed(1);
+
+                if (!msg.mentions.users.size) {
+                    msg.reply(`${covid}% chance of covid`);
+                } else {
+                    let covidUser = msg.mentions.users.first();
+                    if (msg.author === covidUser) return msg.reply("You do not have mention yourself to vibecheck youself");
+                    msg.reply(`<@${covidUser.id}> has a ${covid}% chance of covid`);
+                }
+                break;
+            case 'frog':
+                rpup('frogs')
+                    .then(url => {
+                        const frog = new Discord.MessageEmbed()
+                            .setTitle('Frog')
+                            .setImage(url);
+
+                        msg.channel.send(frog);
+                    });
+                break;
             case 'help':
                 const miscHelp = new Discord.MessageEmbed()
                     .setColor('#fce300')
@@ -305,6 +328,7 @@ client.on('message', msg => {
                     .addField('bucket', 'Sends a random bucket image')
                     .addField('egg', 'Pings Aeon')
                     .addField('coinflip [number of flips]', 'Flips a coin the specified amount of times. Number is optional')
+                    .addField('oracle [question]', 'Ask The Oracle A Question')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
@@ -337,6 +361,7 @@ client.on('message', msg => {
                     .addField('textuser {user} {message}', 'Sends the specified member a dm with the specified message')
                     .addField('bitethumb {user}', 'Bite your thumb at the mentioned user')
                     .addField('howcute {user}', 'Rates how cute you are on a scale of 100-100')
+                    .addField('covidtest {user}', 'Covid-19 test')
 
                     .setTimestamp()
                     .setFooter('More commands coming soon', `${client.user.avatarURL()}`);
