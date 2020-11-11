@@ -27,7 +27,7 @@ client.on('message', msg => {
 
     if (msg.channel.type === 'dm') {
         if (msg.author.bot) return;
-        client.channels.cache.get('684638934348726303').send('DM from <@' + msg.author.id + '> containing message ' + '"' + msg.content + '"');
+        client.channels.cache.get('776231048815443979').send('DM from <@' + msg.author.id + '> containing message ' + '"' + msg.content + '"');
     }
 
     if (msg.content.slice(0, 1) === prefix) {
