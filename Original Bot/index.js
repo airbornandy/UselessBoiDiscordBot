@@ -420,21 +420,23 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
-    if (msg.guild.id === '501556469888581632') {
-        if (msg.content === "|reacttoggle") {
-            if (reactions === true) {
-                reactions = false;
-                msg.channel.send("Reactions Disabled");
-            } else {
-                reactions = true;
-                msg.channel.send("Reactions Enabled");
+    if (msg.guild.id !== NULL) {
+        if (msg.guild.id === '501556469888581632') {
+            if (msg.content === "|reacttoggle") {
+                if (reactions === true) {
+                    reactions = false;
+                    msg.channel.send("Reactions Disabled");
+                } else {
+                    reactions = true;
+                    msg.channel.send("Reactions Enabled");
+                }
             }
-        }
 
-        if (reactions) {
-            const bucketemoji = msg.guild.emojis.cache.find(emoji => emoji.name === 'bucket');
-            msg.react('🗄️').then(() => msg.react(bucketemoji));
-        } else return;
+            if (reactions) {
+                const bucketemoji = msg.guild.emojis.cache.find(emoji => emoji.name === 'bucket');
+                msg.react('🗄️').then(() => msg.react(bucketemoji));
+            } else return;
+        }
     }
 });
 
