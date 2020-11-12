@@ -151,7 +151,7 @@ client.on('message', msg => {
                 const textMessage = args.join(" ");
                 msg.delete();
                 textUser.send(textMessage);
-                client.channels.cache.get('684638934348726303').send(`Message "${textMessage}" sent to <@${textUser.id}>`)
+                msg.reply(`Message "${textMessage}" sent to <@${textUser.id}>`)
                 break;
             case 'ducks':
                 msg.channel.send("Duck rape is a major issue");
