@@ -420,7 +420,7 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
-    if (msg.guild.id !== null) {
+    if (msg.channel.type !== 'dm') {
         if (msg.guild.id === '501556469888581632') {
             if (msg.content === "|reacttoggle") {
                 if (reactions === true) {
