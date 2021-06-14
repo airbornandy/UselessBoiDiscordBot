@@ -315,7 +315,7 @@ client.on('message', msg => {
                     });
                 break;
             case 'vine':
-                let vineNumber = Math.floor(Math.random() * 50);
+                let vineNumber = Math.floor(Math.random() * vines.vines.length);
                 msg.reply(vines.vines[vineNumber]);
                 break;
             case 'help':
